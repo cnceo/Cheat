@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="GXService.Broadcast" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://tempuri.org/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BroadcastService" targetNamespace="GXService.Broadcast" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://tempuri.org/" location="" />
+  <wsdl:types />
+  <wsdl:service name="BroadcastService">
+    <wsdl:port name="NetTcpBinding_IBroadcast" binding="i0:NetTcpBinding_IBroadcast">
+      <soap12:address location="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost/GXService/Broadcast/BroadcastService.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <X509Data>
+              <X509Certificate>MIIC8zCCAd+gAwIBAgIQYCXFxsoCSoZFilVbyWAIBDAJBgUrDgMCHQUAMBQxEjAQBgNVBAMTCUdYU2VydmljZTAeFw0xMzA1MjkxNDQ3NDRaFw0zOTEyMzEyMzU5NTlaMBQxEjAQBgNVBAMTCUdYU2VydmljZTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKekPE5eHtTlvi06CBCm4bsumAUQ2hrV04ZzqfQjOIVkzVy3X25RVdVlDKiVCg1Op58jFc8VnJV8GLYBU9hr2MDgwlo9w6bNdzP4e7rgLa1earbn87DgxeMp2zLWSePuAXpnHD7YBgd1pNu0AzrtKpz70YFpad25wOV8gr2cSNgZgiNOoQhS6GsDtFbYOlGmaNYSLpToX00hKIetUTGWF2a5JlTdiC2IeTTYIugLujnWIyNFQhPfm6F2ICmFMCZRD/yy8jZgLG1cJ+mO43wgYVMgEas/SMMH1j+Js8V5itYVPOFq3B9kBUYU10m6d1ZLiyNPzrTjjGIkrqk85/G7aA8CAwEAAaNJMEcwRQYDVR0BBD4wPIAQpaPVzOlKrqKfAYLXnPZ/5qEWMBQxEjAQBgNVBAMTCUdYU2VydmljZYIQYCXFxsoCSoZFilVbyWAIBDAJBgUrDgMCHQUAA4IBAQCfK30GcwsLAdIOvGj0YLaGxA1MzEPc2OaSm1bnHUm8Y/qXTHerUh/c9EooCxSzFWYWgHCcMbTipoXDHWE/uyRIMPV1xW/kJUAMG84Mcb7gTqKO5ZEyAPjhWpmN9f7EDoIOEvelylVEJLzu7vNuUBQRDoNmMTDb1zsExITm7MxqEdzClLejPDs4rR//Bv+4F92EraGXGZgvOPO7f/Ew5umsiBstoP6XXcE3tqnAe7Dt/pZLZNDqnV5bXtc9I1ivM/aYTeW0Ohf9pqmxXnn+a7EKg4CcP3yTzCvCpC3ToB4VJx0lUuxe4aBNdmJwfL3Duzblxa/V0gN3aj3b2MGY5A2C</X509Certificate>
+            </X509Data>
+          </KeyInfo>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
