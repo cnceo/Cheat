@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.Broadcast.Contract", "GXService.Broadcast.Contract\GXService.Broadcast.Contract.csproj", "{ACCEA18F-D23F-45C4-95B0-D6BBFDDF864A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.Broadcast.Service", "GXService.Broadcast.Service\GXService.Broadcast.Service.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.CardRecognize.Contract", "GXService.CardRecognize.Contract\GXService.CardRecognize.Contract.csproj", "{7568639E-A449-45C6-BF82-CE7ED1D7FCD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.Utils", "GXService.Utils\GXService.Utils.csproj", "{2ABB0921-616D-4BB9-952A-A46B06A15D47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.CardRecognize.Service", "GXService.CardRecognize.Service\GXService.CardRecognize.Service.csproj", "{136E0922-1894-439F-9F64-8DDA4D39EAEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.Host", "GXService.Host\GXService.Host.csproj", "{FECA1533-D797-4E9D-9FA8-AE63387EF7DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.Broadcast.Client", "GXService.Broadcast.Client\GXService.Broadcast.Client.csproj", "{B83EB5A5-2633-4DE6-BCE6-84AA96161D25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.Authentication", "GXService.Authentication\GXService.Authentication.csproj", "{6A0ADFAC-4F85-4673-9F1B-5773674B6093}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GXService.Broadcast", "GXService.Broadcast", "{3DCC3D18-A5BE-4D31-852C-1D0A86860671}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GXService.CardRecognize", "GXService.CardRecognize", "{38B5B16E-5B9F-4CBA-B337-A96D68AC9566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.CardRecognize.Host.IIS", "GXService.CardRecognize.Host.IIS\GXService.CardRecognize.Host.IIS.csproj", "{048BD7EF-3CBD-43A4-991C-DEB9E7F16E6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.Broadcast.Host.IIS", "GXService.Broadcast.Host.IIS\GXService.Broadcast.Host.IIS.csproj", "{B84D3832-30C6-4E37-AABC-073096DF3162}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GXService.CardRecognize.Client", "GXService.CardRecognize.Client\GXService.CardRecognize.Client.csproj", "{4A355AEC-0A61-4CD0-A86D-105724FBC604}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACCEA18F-D23F-45C4-95B0-D6BBFDDF864A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACCEA18F-D23F-45C4-95B0-D6BBFDDF864A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACCEA18F-D23F-45C4-95B0-D6BBFDDF864A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACCEA18F-D23F-45C4-95B0-D6BBFDDF864A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7568639E-A449-45C6-BF82-CE7ED1D7FCD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7568639E-A449-45C6-BF82-CE7ED1D7FCD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7568639E-A449-45C6-BF82-CE7ED1D7FCD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7568639E-A449-45C6-BF82-CE7ED1D7FCD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ABB0921-616D-4BB9-952A-A46B06A15D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ABB0921-616D-4BB9-952A-A46B06A15D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ABB0921-616D-4BB9-952A-A46B06A15D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ABB0921-616D-4BB9-952A-A46B06A15D47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{136E0922-1894-439F-9F64-8DDA4D39EAEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{136E0922-1894-439F-9F64-8DDA4D39EAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{136E0922-1894-439F-9F64-8DDA4D39EAEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{136E0922-1894-439F-9F64-8DDA4D39EAEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FECA1533-D797-4E9D-9FA8-AE63387EF7DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FECA1533-D797-4E9D-9FA8-AE63387EF7DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FECA1533-D797-4E9D-9FA8-AE63387EF7DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FECA1533-D797-4E9D-9FA8-AE63387EF7DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B83EB5A5-2633-4DE6-BCE6-84AA96161D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B83EB5A5-2633-4DE6-BCE6-84AA96161D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B83EB5A5-2633-4DE6-BCE6-84AA96161D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B83EB5A5-2633-4DE6-BCE6-84AA96161D25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0ADFAC-4F85-4673-9F1B-5773674B6093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0ADFAC-4F85-4673-9F1B-5773674B6093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0ADFAC-4F85-4673-9F1B-5773674B6093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0ADFAC-4F85-4673-9F1B-5773674B6093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048BD7EF-3CBD-43A4-991C-DEB9E7F16E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048BD7EF-3CBD-43A4-991C-DEB9E7F16E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048BD7EF-3CBD-43A4-991C-DEB9E7F16E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048BD7EF-3CBD-43A4-991C-DEB9E7F16E6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B84D3832-30C6-4E37-AABC-073096DF3162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B84D3832-30C6-4E37-AABC-073096DF3162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B84D3832-30C6-4E37-AABC-073096DF3162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84D3832-30C6-4E37-AABC-073096DF3162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A355AEC-0A61-4CD0-A86D-105724FBC604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A355AEC-0A61-4CD0-A86D-105724FBC604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A355AEC-0A61-4CD0-A86D-105724FBC604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A355AEC-0A61-4CD0-A86D-105724FBC604}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{15B3E0D2-6217-493A-A690-158C497F5318} = {3DCC3D18-A5BE-4D31-852C-1D0A86860671}
+		{B83EB5A5-2633-4DE6-BCE6-84AA96161D25} = {3DCC3D18-A5BE-4D31-852C-1D0A86860671}
+		{ACCEA18F-D23F-45C4-95B0-D6BBFDDF864A} = {3DCC3D18-A5BE-4D31-852C-1D0A86860671}
+		{B84D3832-30C6-4E37-AABC-073096DF3162} = {3DCC3D18-A5BE-4D31-852C-1D0A86860671}
+		{136E0922-1894-439F-9F64-8DDA4D39EAEC} = {38B5B16E-5B9F-4CBA-B337-A96D68AC9566}
+		{7568639E-A449-45C6-BF82-CE7ED1D7FCD6} = {38B5B16E-5B9F-4CBA-B337-A96D68AC9566}
+		{048BD7EF-3CBD-43A4-991C-DEB9E7F16E6B} = {38B5B16E-5B9F-4CBA-B337-A96D68AC9566}
+		{4A355AEC-0A61-4CD0-A86D-105724FBC604} = {38B5B16E-5B9F-4CBA-B337-A96D68AC9566}
+	EndGlobalSection
+EndGlobal
