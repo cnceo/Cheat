@@ -82,16 +82,16 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         未知 = -1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        黑桃 = 0,
+        方块 = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        红桃 = 1,
+        梅花 = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        梅花 = 2,
+        红桃 = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        方块 = 3,
+        黑桃 = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -102,65 +102,71 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         未知 = -1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _A = 0,
+        _2 = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _2 = 1,
+        _3 = 3,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _3 = 2,
+        _4 = 4,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _4 = 3,
+        _5 = 5,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _5 = 4,
+        _6 = 6,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _6 = 5,
+        _7 = 7,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _7 = 6,
+        _8 = 8,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _8 = 7,
+        _9 = 9,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _9 = 8,
+        _10 = 10,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _10 = 9,
+        _J = 11,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _J = 10,
+        _Q = 12,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _Q = 11,
+        _K = 13,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _K = 12,
+        _A = 14,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _Joke = 13,
+        _Joke = 15,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _BigJoke = 14,
+        _BigJoke = 16,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _Any = 15,
+        _Any = 17,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CardType", Namespace="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CardTypeResult", Namespace="GXService.CardRecognize.Contract")]
     [System.SerializableAttribute()]
-    public partial class CardType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CardTypeResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardTypeParse.Card[] CardsField;
+        private GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeHeadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeMiddleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeTailField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -173,15 +179,70 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardTypeParse.Card[] Cards {
+        public GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeHead {
             get {
-                return this.CardsField;
+                return this.CardTypeHeadField;
             }
             set {
-                if ((object.ReferenceEquals(this.CardsField, value) != true)) {
-                    this.CardsField = value;
-                    this.RaisePropertyChanged("Cards");
+                if ((object.ReferenceEquals(this.CardTypeHeadField, value) != true)) {
+                    this.CardTypeHeadField = value;
+                    this.RaisePropertyChanged("CardTypeHead");
                 }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeMiddle {
+            get {
+                return this.CardTypeMiddleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CardTypeMiddleField, value) != true)) {
+                    this.CardTypeMiddleField = value;
+                    this.RaisePropertyChanged("CardTypeMiddle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeTail {
+            get {
+                return this.CardTypeTailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CardTypeTailField, value) != true)) {
+                    this.CardTypeTailField = value;
+                    this.RaisePropertyChanged("CardTypeTail");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class CardType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
             }
         }
         
@@ -200,10 +261,10 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
     public interface ICardTypeParser {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardType", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeResponse")]
-        GXService.CardRecognize.Client.CardTypeParse.CardType[] ParseCardType(GXService.CardRecognize.Client.CardTypeParse.Card[] cards);
+        GXService.CardRecognize.Client.CardTypeParse.CardTypeResult[] ParseCardType(GXService.CardRecognize.Client.CardTypeParse.Card[] cards);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardType", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeResponse")]
-        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParse.CardType[]> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParse.Card[] cards);
+        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParse.CardTypeResult[]> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParse.Card[] cards);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -233,11 +294,11 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
                 base(binding, remoteAddress) {
         }
         
-        public GXService.CardRecognize.Client.CardTypeParse.CardType[] ParseCardType(GXService.CardRecognize.Client.CardTypeParse.Card[] cards) {
+        public GXService.CardRecognize.Client.CardTypeParse.CardTypeResult[] ParseCardType(GXService.CardRecognize.Client.CardTypeParse.Card[] cards) {
             return base.Channel.ParseCardType(cards);
         }
         
-        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParse.CardType[]> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParse.Card[] cards) {
+        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParse.CardTypeResult[]> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParse.Card[] cards) {
             return base.Channel.ParseCardTypeAsync(cards);
         }
     }

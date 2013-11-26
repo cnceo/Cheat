@@ -142,20 +142,20 @@
     <None Include="Service References\CardRecognize\GXService.CardRecognize.Client.CardRecognize.RecognizeResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\CardRecognize\GXService.CardRecognize.Contract2.xsd">
+    <None Include="Service References\CardRecognize\GXService.CardRecognize.Contract.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognize\GXService.CardRecognize.Contract21.xsd">
+    <None Include="Service References\CardRecognize\GXService.CardRecognize.Contract1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognize\service1.wsdl" />
-    <None Include="Service References\CardRecognize\service2.xsd">
+    <None Include="Service References\CardRecognize\service.wsdl" />
+    <None Include="Service References\CardRecognize\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognize\service21.xsd">
+    <None Include="Service References\CardRecognize\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardTypeParse\GXService.CardRecognize.Client.CardTypeParse.CardType.datasource">
+    <None Include="Service References\CardTypeParse\GXService.CardRecognize.Client.CardTypeParse.CardTypeResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CardTypeParse\GXService.CardRecognize.Contract2.xsd">

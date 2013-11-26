@@ -202,16 +202,16 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         未知 = -1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        黑桃 = 0,
+        方块 = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        红桃 = 1,
+        梅花 = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        梅花 = 2,
+        红桃 = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        方块 = 3,
+        黑桃 = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -222,52 +222,52 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         未知 = -1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _A = 0,
+        _2 = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _2 = 1,
+        _3 = 3,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _3 = 2,
+        _4 = 4,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _4 = 3,
+        _5 = 5,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _5 = 4,
+        _6 = 6,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _6 = 5,
+        _7 = 7,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _7 = 6,
+        _8 = 8,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _8 = 7,
+        _9 = 9,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _9 = 8,
+        _10 = 10,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _10 = 9,
+        _J = 11,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _J = 10,
+        _Q = 12,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _Q = 11,
+        _K = 13,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _K = 12,
+        _A = 14,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _Joke = 13,
+        _Joke = 15,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _BigJoke = 14,
+        _BigJoke = 16,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        _Any = 15,
+        _Any = 17,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

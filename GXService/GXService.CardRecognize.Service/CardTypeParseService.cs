@@ -22,12 +22,32 @@ namespace GXService.CardRecognize.Service
                 new OnePieceCardTypeRecognizer()
             };
 
-        public List<CardType> ParseCardType(List<Card> cards)
+        public List<CardTypeResult> ParseCardType(List<Card> cards)
         {
-            var result = new List<CardType>();
+            var result = new List<CardTypeResult>();
+            var resultTmp = new List<CardType>();
+            var tmp = cards.ToList();
 
-            _recognizers.ForEach(recognizer =>
-                                 result.AddRange(recognizer.Recognize(cards)));
+            _recognizers.Where(rec => !(rec is OnePieceCardTypeRecognizer))
+                        .ToList()
+                        .ForEach(rec => resultTmp.AddRange(rec.Recognize(tmp)));
+
+            resultTmp.ForEach(bodyType =>
+            {
+                var tmpCards = tmp.FindAll(card => !bodyType.GetCards().Contains(card)).ToList();
+                _recognizers
+                    .ForEach(rec =>
+                             rec.Recognize(tmpCards)
+                                .ForEach(tailType =>
+                                         result.Add(new CardTypeResult(
+                                                        HeadCardTypeFactory.GetSingleton()
+                                                                           .GetHeadCardType(tmp.FindAll(
+                                                                               card =>
+                                                                               !bodyType.GetCards().Contains(card) &&
+                                                                               !tailType.GetCards().Contains(card))
+                                                                                               .ToList()),
+                                                        bodyType, tailType))));
+            });
 
             return result;
         }
@@ -56,23 +76,17 @@ namespace GXService.CardRecognize.Service
         public override List<CardType> Recognize(List<Card> cards)
         {
             var result = new List<CardType>();
-
-            cards.ForEach(card => CardsDic[card.Num].Add(card));
+            CardsDic.Keys.ToList().ForEach(key => CardsDic[key].Clear());
 
             var flushDic = new Dictionary<CardColor, List<Card>>
-            {
-                {CardColor.黑桃, new List<Card>()},
-                {CardColor.红桃, new List<Card>()},
-                {CardColor.梅花, new List<Card>()},
-                {CardColor.方块, new List<Card>()}
-            };
+                {
+                    {CardColor.黑桃, new List<Card>()},
+                    {CardColor.红桃, new List<Card>()},
+                    {CardColor.梅花, new List<Card>()},
+                    {CardColor.方块, new List<Card>()}
+                };
 
-            CardsDic.Keys
-                    .ToList()
-                    .ForEach(key =>
-                             CardsDic[key]
-                                 .ForEach(card =>
-                                          flushDic[card.Color].Add(card)));
+            cards.ForEach(card => flushDic[card.Color].Add(card));
 
             flushDic.ToList()
                     .ForEach(dic =>
@@ -82,11 +96,7 @@ namespace GXService.CardRecognize.Service
                             dic.Value
                                .Combination(5)
                                .ToList()
-                               .ForEach(flush =>
-                                        result.Add(new CardType
-                                        {
-                                            Cards = flush.ToList()
-                                        }));
+                               .ForEach(flush => result.Add(new FlushCardType(flush.ToList())));
                         }
                     });
 
@@ -102,12 +112,14 @@ namespace GXService.CardRecognize.Service
         public override List<CardType> Recognize(List<Card> cards)
         {
             var result = new List<CardType>();
+            CardsDic.Keys.ToList().ForEach(key => CardsDic[key].Clear());
 
             cards.ForEach(card => CardsDic[card.Num].Add(card));
 
             var keys = new List<CardNum>();
 
-            CardsDic.ToList()
+            CardsDic
+                .Where(dic => dic.Key != CardNum._2).ToList()
                 .ForEach(dic =>
                 {
                     if (dic.Value.Count > 0)
@@ -134,18 +146,15 @@ namespace GXService.CardRecognize.Service
                                                             CardsDic[keys[4]]
                                                                 .ForEach(
                                                                     card5 =>
-                                                                    result.Add(new CardType
-                                                                    {
-                                                                        Cards =
-                                                                            new List<Card>
-                                                                                {
-                                                                                    card1,
-                                                                                    card2,
-                                                                                    card3,
-                                                                                    card4,
-                                                                                    card5
-                                                                                }
-                                                                    })
+                                                                    result.Add(new StraightCardType(new List<Card>
+                                                                                    {
+                                                                                        card1,
+                                                                                        card2,
+                                                                                        card3,
+                                                                                        card4,
+                                                                                        card5
+                                                                                    }
+                                                                        ))
                                                                 )))));
                             keys.RemoveAt(0);
                         }
@@ -166,16 +175,14 @@ namespace GXService.CardRecognize.Service
         public override List<CardType> Recognize(List<Card> cards)
         {
             var result = new List<CardType>();
+            CardsDic.Keys.ToList().ForEach(key => CardsDic[key].Clear());
 
             base.Recognize(cards)
                 .ForEach(cardType =>
                 {
-                    if (cardType.Cards.TrueForAll(card => card.Color == cardType.Cards[0].Color))
+                    if (cardType.GetCards().ToList().TrueForAll(card => card.Color == cardType.GetCards()[0].Color))
                     {
-                        result.Add(new CardType
-                        {
-                            Cards = cardType.Cards
-                        });
+                        result.Add(new StraightFlushCardType(cardType.GetCards().ToList()));
                     }
                 });
 
@@ -191,6 +198,7 @@ namespace GXService.CardRecognize.Service
         public override List<CardType> Recognize(List<Card> cards)
         {
             var result = new List<CardType>();
+            CardsDic.Keys.ToList().ForEach(key => CardsDic[key].Clear());
 
             cards.ForEach(card => CardsDic[card.Num].Add(card));
 
@@ -224,7 +232,7 @@ namespace GXService.CardRecognize.Service
                                           {
                                               var cardsType = CardsDic[key4].ToList();
                                               cardsType.Add(card1);
-                                              result.Add(new CardType { Cards = cardsType });
+                                              result.Add(new BoomCardType(cardsType));
                                           })));
             return result;
         }
@@ -238,6 +246,7 @@ namespace GXService.CardRecognize.Service
         public override List<CardType> Recognize(List<Card> cards)
         {
             var result = new List<CardType>();
+            CardsDic.Keys.ToList().ForEach(key => CardsDic[key].Clear());
 
             cards.ForEach(card => CardsDic[card.Num].Add(card));
 
@@ -270,11 +279,7 @@ namespace GXService.CardRecognize.Service
                                                    CardsDic[key2]
                                                        .Combination(2)
                                                        .ToList()
-                                                       .ForEach(c2 =>
-                                                                result.Add(new CardType
-                                                                {
-                                                                    Cards = c3.Concat(c2).ToList()
-                                                                })))));
+                                                       .ForEach(c2 => result.Add(new GourdCardType(c3.Concat(c2).ToList()))))));
 
             return result;
         }
@@ -288,6 +293,7 @@ namespace GXService.CardRecognize.Service
         public override List<CardType> Recognize(List<Card> cards)
         {
             var result = new List<CardType>();
+            CardsDic.Keys.ToList().ForEach(key => CardsDic[key].Clear());
 
             cards.ForEach(card => CardsDic[card.Num].Add(card));
 
@@ -321,23 +327,21 @@ namespace GXService.CardRecognize.Service
                                           .ToList()
                                           .ForEach(comb2Keys =>
                                           {
-                                              if (comb2Keys.Contains(key3))
+                                              var enumerable = comb2Keys as IList<CardNum> ?? comb2Keys.ToList();
+                                              if (enumerable.Contains(key3))
                                               {
                                                   return;
                                               }
-                                              var cardNums = comb2Keys.ToList();
+                                              var cardNums = enumerable.ToList();
                                               CardsDic[cardNums[0]]
                                                   .ForEach(card1 =>
                                                            CardsDic[cardNums[1]]
                                                                .ForEach(card2 =>
                                                                {
-                                                                   var cardType = new CardType
-                                                                   {
-                                                                       Cards = comb3.ToList()
-                                                                   };
-                                                                   cardType.Cards.Add(card1);
-                                                                   cardType.Cards.Add(card2);
-                                                                   result.Add(cardType);
+                                                                   var cardType = comb3.ToList();
+                                                                   cardType.Add(card1);
+                                                                   cardType.Add(card2);
+                                                                   result.Add(new ThreeSameCardType(cardType));
                                                                }));
                                           })));
 
@@ -350,6 +354,7 @@ namespace GXService.CardRecognize.Service
         public override List<CardType> Recognize(List<Card> cards)
         {
             var result = new List<CardType>();
+            CardsDic.Keys.ToList().ForEach(key => CardsDic[key].Clear());
 
             cards.ForEach(card => CardsDic[card.Num].Add(card));
 
@@ -357,64 +362,58 @@ namespace GXService.CardRecognize.Service
             var keysMore1 = new List<CardNum>();
 
             CardsDic.ToList()
-                .ForEach(dic =>
-                {
-                    if (dic.Value.Count <= 0)
+                    .ForEach(dic =>
                     {
-                        return;
-                    }
+                        if (dic.Value.Count <= 0)
+                        {
+                            return;
+                        }
 
-                    keysMore1.Add(dic.Key);
+                        keysMore1.Add(dic.Key);
 
-                    if (dic.Value.Count >= 2)
-                    {
-                        keysMore2.Add(dic.Key);
-                    }
-                });
+                        if (dic.Value.Count >= 2)
+                        {
+                            keysMore2.Add(dic.Key);
+                        }
+                    });
 
             keysMore2
                 .ForEach(keyDouble =>
-                {
-                    CardsDic[keyDouble]
-                        .Combination(2)
-                        .ToList()
-                        .ForEach(cardDouble =>
-                        {
-                            keysMore1
-                                .Combination(3)
-                                .Where(comb3 => !comb3.Contains(keyDouble))
-                                .ToList()
-                                .ForEach(comb3 =>
-                                {
-                                    CardsDic[comb3.ToList()[0]]
-                                        .ToList()
-                                        .ForEach(card3 =>
-                                        {
-                                            CardsDic[comb3.ToList()[1]]
-                                                .ToList()
-                                                .ForEach(card4 =>
-                                                {
-                                                    CardsDic[comb3.ToList()[2]]
-                                                        .ToList()
-                                                        .ForEach(card5 =>
-                                                        {
-                                                            var cardsType = new List<Card>
-                                                                                    {
-                                                                                        card3,
-                                                                                        card4,
-                                                                                        card5
-                                                                                    };
-                                                            cardsType.AddRange(cardDouble);
-                                                            result.Add(new CardType
-                                                            {
-                                                                Cards = cardsType
-                                                            });
-                                                        });
-                                                });
-                                        });
-                                });
-                        });
-                });
+                         CardsDic[keyDouble]
+                             .Combination(2)
+                             .ToList()
+                             .ForEach(cardDouble =>
+                                      keysMore1
+                                          .Combination(3)
+                                          .Where(comb3 => !comb3.Contains(keyDouble))
+                                          .ToList()
+                                          .ForEach(comb3 =>
+                                          {
+                                              var cardNums = comb3 as IList<CardNum> ?? comb3.ToList();
+                                              CardsDic[cardNums.ToList()[0]]
+                                                  .ToList()
+                                                  .ForEach(card3 =>
+                                                           CardsDic[cardNums.ToList()[1]]
+                                                               .ToList()
+                                                               .ForEach(card4 =>
+                                                                        CardsDic[cardNums.ToList()[2]]
+                                                                            .ToList()
+                                                                            .ForEach(card5 =>
+                                                                            {
+                                                                                var cardsType =
+                                                                                    cardDouble.ToList();
+                                                                                cardsType.AddRange(new List
+                                                                                                       <Card>
+                                                                                            {
+                                                                                                card3,
+                                                                                                card4,
+                                                                                                card5
+                                                                                            });
+                                                                                result.Add(
+                                                                                    new OnePairCardType(
+                                                                                        cardsType));
+                                                                            })));
+                                          })));
 
             return result;
         }
@@ -425,6 +424,7 @@ namespace GXService.CardRecognize.Service
         public override List<CardType> Recognize(List<Card> cards)
         {
             var result = new List<CardType>();
+            CardsDic.Keys.ToList().ForEach(key => CardsDic[key].Clear());
 
             cards.ForEach(card => CardsDic[card.Num].Add(card));
 
@@ -432,53 +432,63 @@ namespace GXService.CardRecognize.Service
             var keysMore1 = new List<CardNum>();
 
             CardsDic.ToList()
-                .ForEach(dic =>
-                {
-                    if (dic.Value.Count <= 0)
+                    .ForEach(dic =>
                     {
-                        return;
-                    }
+                        if (dic.Value.Count <= 0)
+                        {
+                            return;
+                        }
 
-                    keysMore1.Add(dic.Key);
+                        keysMore1.Add(dic.Key);
 
-                    if (dic.Value.Count >= 2)
-                    {
-                        keysMore2.Add(dic.Key);
-                    }
-                });
-
+                        if (dic.Value.Count >= 2)
+                        {
+                            keysMore2.Add(dic.Key);
+                        }
+                    });
+            if (keysMore2.Count < 2)
+            {
+                return result;
+            }
             keysMore2.Combination(2)
                      .ToList()
                      .ForEach(comb2 =>
                      {
-                         CardsDic[comb2.ToList()[0]]
+                         var cardNums = comb2 as CardNum[] ?? comb2.ToArray();
+                         CardsDic[cardNums.ToList()[0]]
                              .Combination(2)
                              .ToList()
                              .ForEach(cards2First =>
-                             {
-                                 CardsDic[comb2.ToList()[1]]
-                                     .Combination(2)
-                                     .ToList()
-                                     .ForEach(cards2Second =>
-                                     {
-                                         keysMore1
-                                             .Where(key => !comb2.Contains(key))
-                                             .ToList()
-                                             .ForEach(cardOneKey =>
-                                                      CardsDic[cardOneKey]
-                                                          .ForEach(card =>
-                                                          {
-                                                              var cardsType = new List<Card>();
-                                                              cardsType.AddRange(cards2First);
-                                                              cardsType.AddRange(cards2Second);
-                                                              cardsType.Add(card);
-                                                              result.Add(new CardType
-                                                              {
-                                                                  Cards = cardsType
-                                                              });
-                                                          }));
-                                     });
-                             });
+                                      CardsDic[cardNums.ToList()[1]]
+                                          .Combination(2)
+                                          .ToList()
+                                          .ForEach(cards2Second =>
+                                                   keysMore1
+                                                       .Where(key => !cardNums.Contains(key))
+                                                       .ToList()
+                                                       .ForEach(cardOneKey =>
+                                                                CardsDic[cardOneKey]
+                                                                    .ForEach(card =>
+                                                                    {
+                                                                        var cardsType = new List<Card>();
+                                                                        var enumerable = cards2First as IList<Card> ?? cards2First.ToList();
+                                                                        var collection = cards2Second as IList<Card> ?? cards2Second.ToList();
+                                                                        if (enumerable.ToList()[0].Num >= collection.ToList()[0].Num)
+                                                                        {
+                                                                            cardsType.AddRange(enumerable);
+                                                                            cardsType.AddRange(collection);
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            cardsType.AddRange(collection);
+                                                                            cardsType.AddRange(enumerable);
+                                                                        }
+                                                                        cardsType.Add(card);
+                                                                        result.Add(new DoublePairCardType
+                                                                                       (
+                                                                                       cardsType
+                                                                                       ));
+                                                                    }))));
                      });
 
             return result;
@@ -490,6 +500,7 @@ namespace GXService.CardRecognize.Service
         public override List<CardType> Recognize(List<Card> cards)
         {
             var result = new List<CardType>();
+            CardsDic.Keys.ToList().ForEach(key => CardsDic[key].Clear());
 
             cards.ForEach(card => CardsDic[card.Num].Add(card));
 
@@ -512,40 +523,34 @@ namespace GXService.CardRecognize.Service
                     .ToList()
                     .ForEach(comb5 =>
                     {
-                        CardsDic[comb5.ToList()[0]]
+                        var cardNums = comb5 as IList<CardNum> ?? comb5.ToList();
+                        CardsDic[cardNums.ToList()[0]]
                             .ToList()
                             .ForEach(card1 =>
-                            {
-                                CardsDic[comb5.ToList()[1]]
-                                    .ToList()
-                                    .ForEach(card2 =>
-                                    {
-                                        CardsDic[comb5.ToList()[2]]
-                                            .ToList()
-                                            .ForEach(card3 =>
-                                            {
-                                                CardsDic[comb5.ToList()[3]]
-                                                    .ToList()
-                                                    .ForEach(card4 =>
-                                                    {
-                                                        CardsDic[comb5.ToList()[4]]
-                                                            .ToList()
-                                                            .ForEach(card5 =>
-                                                                     result.Add(new CardType
-                                                                     {
-                                                                         Cards = new List<Card>
-                                                                                                 {
-                                                                                                     card1,
-                                                                                                     card2,
-                                                                                                     card3,
-                                                                                                     card4,
-                                                                                                     card5
-                                                                                                 }
-                                                                     }));
-                                                    });
-                                            });
-                                    });
-                            });
+                                     CardsDic[cardNums.ToList()[1]]
+                                         .ToList()
+                                         .ForEach(card2 =>
+                                                  CardsDic[cardNums.ToList()[2]]
+                                                      .ToList()
+                                                      .ForEach(card3 =>
+                                                               CardsDic[cardNums.ToList()[3]]
+                                                                   .ToList()
+                                                                   .ForEach(card4 =>
+                                                                            CardsDic[cardNums.ToList()[4]]
+                                                                                .ToList()
+                                                                                .ForEach(card5 =>
+                                                                                         result.Add(new NoTypeCardType
+                                                                                                        (
+                                                                                                        new List
+                                                                                                            <Card>
+                                                                                                                {
+                                                                                                                    card1,
+                                                                                                                    card2,
+                                                                                                                    card3,
+                                                                                                                    card4,
+                                                                                                                    card5
+                                                                                                                }
+                                                                                                        )))))));
                     });
             }
 

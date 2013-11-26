@@ -8,15 +8,6 @@ namespace GXService.CardRecognize.Contract
     public interface ICardTypeParser
     {
         [OperationContract]
-        List<CardType> ParseCardType(List<Card> cards);
-    }
-
-    [DataContract]
-    public class CardType
-    {
-        public float Weight { get; set; }
-
-        [DataMember]
-        public List<Card> Cards { get; set; }
+        List<CardTypeResult> ParseCardType(List<Card> cards);
     }
 }
