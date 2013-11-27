@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GXService.CardRecognize.Client.CardTypeParse {
+namespace GXService.CardRecognize.Client.CardTypeParseServiceReference {
     using System.Runtime.Serialization;
     using System;
     
@@ -23,10 +23,10 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardTypeParse.CardColor ColorField;
+        private GXService.CardRecognize.Client.CardTypeParseServiceReference.CardColor ColorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardTypeParse.CardNum NumField;
+        private GXService.CardRecognize.Client.CardTypeParseServiceReference.CardNum NumField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -39,7 +39,7 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardTypeParse.CardColor Color {
+        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardColor Color {
             get {
                 return this.ColorField;
             }
@@ -52,7 +52,7 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardTypeParse.CardNum Num {
+        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardNum Num {
             get {
                 return this.NumField;
             }
@@ -160,13 +160,13 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeHeadField;
+        private GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType CardTypeHeadField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeMiddleField;
+        private GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType CardTypeMiddleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeTailField;
+        private GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType CardTypeTailField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -179,7 +179,7 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeHead {
+        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType CardTypeHead {
             get {
                 return this.CardTypeHeadField;
             }
@@ -192,7 +192,7 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeMiddle {
+        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType CardTypeMiddle {
             get {
                 return this.CardTypeMiddleField;
             }
@@ -205,7 +205,7 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardTypeParse.CardType CardTypeTail {
+        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType CardTypeTail {
             get {
                 return this.CardTypeTailField;
             }
@@ -257,23 +257,29 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CardTypeParse.ICardTypeParser", SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CardTypeParseServiceReference.ICardTypeParser", SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface ICardTypeParser {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardType", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeResponse")]
-        GXService.CardRecognize.Client.CardTypeParse.CardTypeResult[] ParseCardType(GXService.CardRecognize.Client.CardTypeParse.Card[] cards);
+        GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardType(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardType", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeResponse")]
-        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParse.CardTypeResult[]> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParse.Card[] cards);
+        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardTypeVsEnemy", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeVsEnemyResponse")]
+        GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardTypeVsEnemy(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cardsEnemy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardTypeVsEnemy", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeVsEnemyResponse")]
+        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeVsEnemyAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cardsEnemy);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ICardTypeParserChannel : GXService.CardRecognize.Client.CardTypeParse.ICardTypeParser, System.ServiceModel.IClientChannel {
+    public interface ICardTypeParserChannel : GXService.CardRecognize.Client.CardTypeParseServiceReference.ICardTypeParser, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CardTypeParserClient : System.ServiceModel.ClientBase<GXService.CardRecognize.Client.CardTypeParse.ICardTypeParser>, GXService.CardRecognize.Client.CardTypeParse.ICardTypeParser {
+    public partial class CardTypeParserClient : System.ServiceModel.ClientBase<GXService.CardRecognize.Client.CardTypeParseServiceReference.ICardTypeParser>, GXService.CardRecognize.Client.CardTypeParseServiceReference.ICardTypeParser {
         
         public CardTypeParserClient() {
         }
@@ -294,12 +300,20 @@ namespace GXService.CardRecognize.Client.CardTypeParse {
                 base(binding, remoteAddress) {
         }
         
-        public GXService.CardRecognize.Client.CardTypeParse.CardTypeResult[] ParseCardType(GXService.CardRecognize.Client.CardTypeParse.Card[] cards) {
+        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardType(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards) {
             return base.Channel.ParseCardType(cards);
         }
         
-        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParse.CardTypeResult[]> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParse.Card[] cards) {
+        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards) {
             return base.Channel.ParseCardTypeAsync(cards);
+        }
+        
+        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardTypeVsEnemy(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cardsEnemy) {
+            return base.Channel.ParseCardTypeVsEnemy(cards, cardsEnemy);
+        }
+        
+        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeVsEnemyAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cardsEnemy) {
+            return base.Channel.ParseCardTypeVsEnemyAsync(cards, cardsEnemy);
         }
     }
 }

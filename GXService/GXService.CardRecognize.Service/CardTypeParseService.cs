@@ -22,7 +22,17 @@ namespace GXService.CardRecognize.Service
                 new OnePieceCardTypeRecognizer()
             };
 
-        public List<CardTypeResult> ParseCardType(List<Card> cards)
+        public CardTypeResult ParseCardType(List<Card> cards)
+        {
+            return GetBestResult(ParseCardTypeResult(cards));
+        }
+
+        public CardTypeResult ParseCardTypeVsEnemy(List<Card> cards, List<Card> cardsEnemy)
+        {
+            return GetBestResult(ParseCardType(cards), ParseCardTypeResult(cardsEnemy));
+        }
+
+        private List<CardTypeResult> ParseCardTypeResult(IEnumerable<Card> cards)
         {
             var result = new List<CardTypeResult>();
             var resultTmp = new List<CardType>();
@@ -50,6 +60,31 @@ namespace GXService.CardRecognize.Service
             });
 
             return result;
+        }
+
+        private static CardTypeResult GetBestResult(List<CardTypeResult> results)
+        {
+            CardTypeResult best = null;
+            results.ForEach(ctr =>
+                {
+                    best = best == null
+                               ? ctr
+                               : (best.Compare(ctr) >= 0
+                                      ? best
+                                      : ctr);
+                });
+            return best;
+        }
+
+        private static CardTypeResult GetBestResult(CardTypeResult bestResult, List<CardTypeResult> resultsEnemy)
+        {
+            resultsEnemy.ForEach(res =>
+                {
+                    bestResult = bestResult.Compare(res) >= 0
+                                     ? bestResult
+                                     : res;
+                });
+            return bestResult;
         }
     }
 

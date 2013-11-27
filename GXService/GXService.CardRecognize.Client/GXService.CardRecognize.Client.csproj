@@ -96,17 +96,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\Broadcast\Reference.cs">
+    <Compile Include="Service References\BroadcastServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\CardRecognize\Reference.cs">
+    <Compile Include="Service References\CardRecognizeServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\CardTypeParse\Reference.cs">
+    <Compile Include="Service References\CardTypeParseServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -131,44 +131,44 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\Broadcast\GXService.Broadcast.wsdl" />
-    <None Include="Service References\Broadcast\service.wsdl" />
-    <None Include="Service References\Broadcast\service.xsd">
+    <None Include="Service References\BroadcastServiceReference\GXService.Broadcast.wsdl" />
+    <None Include="Service References\BroadcastServiceReference\service.wsdl" />
+    <None Include="Service References\BroadcastServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Broadcast\service1.xsd">
+    <None Include="Service References\BroadcastServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognize\GXService.CardRecognize.Client.CardRecognize.RecognizeResult.datasource">
+    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Client.CardRecognizeServiceReference.RecognizeResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\CardRecognize\GXService.CardRecognize.Contract.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognize\GXService.CardRecognize.Contract1.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognize\service.wsdl" />
-    <None Include="Service References\CardRecognize\service.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\service.wsdl" />
+    <None Include="Service References\CardRecognizeServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognize\service1.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardTypeParse\GXService.CardRecognize.Client.CardTypeParse.CardTypeResult.datasource">
+    <None Include="Service References\CardTypeParseServiceReference\GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\CardTypeParse\GXService.CardRecognize.Contract2.xsd">
+    <None Include="Service References\CardTypeParseServiceReference\GXService.CardRecognize.Contract.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardTypeParse\GXService.CardRecognize.Contract21.xsd">
+    <None Include="Service References\CardTypeParseServiceReference\GXService.CardRecognize.Contract1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardTypeParse\service1.wsdl" />
-    <None Include="Service References\CardTypeParse\service2.xsd">
+    <None Include="Service References\CardTypeParseServiceReference\service.wsdl" />
+    <None Include="Service References\CardTypeParseServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardTypeParse\service21.xsd">
+    <None Include="Service References\CardTypeParseServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -179,21 +179,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Broadcast\" />
-    <WCFMetadataStorage Include="Service References\CardRecognize\" />
-    <WCFMetadataStorage Include="Service References\CardTypeParse\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CardRecognize\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CardRecognize\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CardRecognize\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <WCFMetadataStorage Include="Service References\BroadcastServiceReference\" />
+    <WCFMetadataStorage Include="Service References\CardRecognizeServiceReference\" />
+    <WCFMetadataStorage Include="Service References\CardTypeParseServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GXService.Utils\GXService.Utils.csproj">
@@ -219,25 +207,37 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\CardTypeParse\configuration91.svcinfo" />
+    <None Include="Service References\CardTypeParseServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\CardTypeParse\configuration.svcinfo" />
+    <None Include="Service References\CardTypeParseServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\CardTypeParse\Reference.svcmap">
+    <None Include="Service References\CardTypeParseServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Broadcast\configuration91.svcinfo" />
+    <None Include="Service References\CardRecognizeServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Broadcast\configuration.svcinfo" />
+    <None Include="Service References\CardRecognizeServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Broadcast\Reference.svcmap">
+    <None Include="Service References\CardRecognizeServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BroadcastServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BroadcastServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BroadcastServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

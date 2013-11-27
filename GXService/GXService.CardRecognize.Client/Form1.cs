@@ -7,13 +7,13 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using GXService.CardRecognize.Client.CardRecognize;
-using GXService.CardRecognize.Client.CardTypeParse;
-using GXService.CardRecognize.Client.Broadcast;
+using GXService.CardRecognize.Client.BroadcastServiceReference;
+using GXService.CardRecognize.Client.CardRecognizeServiceReference;
+using GXService.CardRecognize.Client.CardTypeParseServiceReference;
 using GXService.Utils;
-using Card = GXService.CardRecognize.Client.CardTypeParse.Card;
-using CardColor = GXService.CardRecognize.Client.CardTypeParse.CardColor;
-using CardNum = GXService.CardRecognize.Client.CardTypeParse.CardNum;
+using Card = GXService.CardRecognize.Client.CardTypeParseServiceReference.Card;
+using CardColor = GXService.CardRecognize.Client.CardTypeParseServiceReference.CardColor;
+using CardNum = GXService.CardRecognize.Client.CardTypeParseServiceReference.CardNum;
 
 namespace GXService.CardRecognize.Client
 {
@@ -65,33 +65,33 @@ namespace GXService.CardRecognize.Client
                         sw.WriteLine(resultDisplay);
 
                         CardTypeResult best = null;
-                        resultParseType.ToList()
-                            .ForEach(ctr =>
-                        {
-                            if (best == null)
-                            {
-                                best = ctr;
-                            }
-                            else
-                            {
-                                best = best.Compare(ctr) >= 0 ? best : ctr;
-                            }
-                        });
+                        //resultParseType.ToList()
+                        //    .ForEach(ctr =>
+                        //{
+                        //    if (best == null)
+                        //    {
+                        //        best = ctr;
+                        //    }
+                        //    else
+                        //    {
+                        //        best = best.Compare(ctr) >= 0 ? best : ctr;
+                        //    }
+                        //});
 
-                        var tmp = "";
+                        //var tmp = "";
 
-                        best.CardTypeHead.GetCards().ToList().ForEach(card => tmp += card.ToString());
-                        tmp += "(" + best.CardTypeHead.GetCardEmType() + ")   ";
+                        //best.CardTypeHead.GetCards().ToList().ForEach(card => tmp += card.ToString());
+                        //tmp += "(" + best.CardTypeHead.GetCardEmType() + ")   ";
 
-                        best.CardTypeMiddle.GetCards()
-                           .ToList()
-                           .ForEach(card => tmp += card.ToString());
-                        tmp += "(" + best.CardTypeMiddle.GetCardEmType() + ")   ";
+                        //best.CardTypeMiddle.GetCards()
+                        //   .ToList()
+                        //   .ForEach(card => tmp += card.ToString());
+                        //tmp += "(" + best.CardTypeMiddle.GetCardEmType() + ")   ";
 
-                        best.CardTypeTail.GetCards().ToList().ForEach(card => tmp += card.ToString());
-                        tmp += "(" + best.CardTypeTail.GetCardEmType() + ")";
+                        //best.CardTypeTail.GetCards().ToList().ForEach(card => tmp += card.ToString());
+                        //tmp += "(" + best.CardTypeTail.GetCardEmType() + ")";
 
-                        sw.WriteLine(tmp);
+                        //sw.WriteLine(tmp);
                     }
                 }
             }

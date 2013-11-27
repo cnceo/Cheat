@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GXService.CardRecognize.Client.CardRecognize {
+namespace GXService.CardRecognize.Client.CardRecognizeServiceReference {
     using System.Runtime.Serialization;
     using System;
     
@@ -26,7 +26,7 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         private byte[] CardsBitmapField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardRecognize.GameTemplateType GameTypeTemplateField;
+        private GXService.CardRecognize.Client.CardRecognizeServiceReference.GameTemplateType GameTypeTemplateField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -52,7 +52,7 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardRecognize.GameTemplateType GameTypeTemplate {
+        public GXService.CardRecognize.Client.CardRecognizeServiceReference.GameTemplateType GameTypeTemplate {
             get {
                 return this.GameTypeTemplateField;
             }
@@ -98,7 +98,7 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardRecognize.Card[] ResultField;
+        private GXService.CardRecognize.Client.CardRecognizeServiceReference.Card[] ResultField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -111,7 +111,7 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardRecognize.Card[] Result {
+        public GXService.CardRecognize.Client.CardRecognizeServiceReference.Card[] Result {
             get {
                 return this.ResultField;
             }
@@ -143,10 +143,10 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardRecognize.CardColor ColorField;
+        private GXService.CardRecognize.Client.CardRecognizeServiceReference.CardColor ColorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardRecognize.CardNum NumField;
+        private GXService.CardRecognize.Client.CardRecognizeServiceReference.CardNum NumField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -159,7 +159,7 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardRecognize.CardColor Color {
+        public GXService.CardRecognize.Client.CardRecognizeServiceReference.CardColor Color {
             get {
                 return this.ColorField;
             }
@@ -172,7 +172,7 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardRecognize.CardNum Num {
+        public GXService.CardRecognize.Client.CardRecognizeServiceReference.CardNum Num {
             get {
                 return this.NumField;
             }
@@ -271,7 +271,7 @@ namespace GXService.CardRecognize.Client.CardRecognize {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CardRecognize.ICardsRecognizer", SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CardRecognizeServiceReference.ICardsRecognizer", SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface ICardsRecognizer {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICardsRecognizer/Start")]
@@ -281,10 +281,10 @@ namespace GXService.CardRecognize.Client.CardRecognize {
         System.Threading.Tasks.Task StartAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardsRecognizer/Recognize", ReplyAction="http://tempuri.org/ICardsRecognizer/RecognizeResponse")]
-        GXService.CardRecognize.Client.CardRecognize.RecognizeResult Recognize(GXService.CardRecognize.Client.CardRecognize.RecoginizeData data);
+        GXService.CardRecognize.Client.CardRecognizeServiceReference.RecognizeResult Recognize(GXService.CardRecognize.Client.CardRecognizeServiceReference.RecoginizeData data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardsRecognizer/Recognize", ReplyAction="http://tempuri.org/ICardsRecognizer/RecognizeResponse")]
-        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardRecognize.RecognizeResult> RecognizeAsync(GXService.CardRecognize.Client.CardRecognize.RecoginizeData data);
+        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardRecognizeServiceReference.RecognizeResult> RecognizeAsync(GXService.CardRecognize.Client.CardRecognizeServiceReference.RecoginizeData data);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, IsTerminating=true, IsInitiating=false, Action="http://tempuri.org/ICardsRecognizer/Stop")]
         void Stop();
@@ -294,12 +294,12 @@ namespace GXService.CardRecognize.Client.CardRecognize {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ICardsRecognizerChannel : GXService.CardRecognize.Client.CardRecognize.ICardsRecognizer, System.ServiceModel.IClientChannel {
+    public interface ICardsRecognizerChannel : GXService.CardRecognize.Client.CardRecognizeServiceReference.ICardsRecognizer, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CardsRecognizerClient : System.ServiceModel.ClientBase<GXService.CardRecognize.Client.CardRecognize.ICardsRecognizer>, GXService.CardRecognize.Client.CardRecognize.ICardsRecognizer {
+    public partial class CardsRecognizerClient : System.ServiceModel.ClientBase<GXService.CardRecognize.Client.CardRecognizeServiceReference.ICardsRecognizer>, GXService.CardRecognize.Client.CardRecognizeServiceReference.ICardsRecognizer {
         
         public CardsRecognizerClient() {
         }
@@ -328,11 +328,11 @@ namespace GXService.CardRecognize.Client.CardRecognize {
             return base.Channel.StartAsync();
         }
         
-        public GXService.CardRecognize.Client.CardRecognize.RecognizeResult Recognize(GXService.CardRecognize.Client.CardRecognize.RecoginizeData data) {
+        public GXService.CardRecognize.Client.CardRecognizeServiceReference.RecognizeResult Recognize(GXService.CardRecognize.Client.CardRecognizeServiceReference.RecoginizeData data) {
             return base.Channel.Recognize(data);
         }
         
-        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardRecognize.RecognizeResult> RecognizeAsync(GXService.CardRecognize.Client.CardRecognize.RecoginizeData data) {
+        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardRecognizeServiceReference.RecognizeResult> RecognizeAsync(GXService.CardRecognize.Client.CardRecognizeServiceReference.RecoginizeData data) {
             return base.Channel.RecognizeAsync(data);
         }
         

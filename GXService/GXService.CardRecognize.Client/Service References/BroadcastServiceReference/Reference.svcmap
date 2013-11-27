@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c6f1d6e6-a733-4574-bd8f-17a7909d3cd5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="adeb254f-0a2b-4514-847f-96cf24f2b135" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,10 @@
     <MetadataSource Address="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="9e60ac35-6490-4dc2-a48e-f49ff9beef22" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
-    <MetadataFile FileName="GXService.Broadcast.wsdl" MetadataType="Wsdl" ID="5d741935-9503-4e4a-b2ed-6151cc20b74f" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="6a687535-1dfe-4748-a85a-3fb51f4980cd" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="4cbaf253-058d-4b05-a4d6-2dd0c91dfa49" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="d94a9c2f-abf9-4987-ae4f-729930c8ad0c" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
+    <MetadataFile FileName="GXService.Broadcast.wsdl" MetadataType="Wsdl" ID="21e2f219-84c6-441d-bcae-df3e2339f8da" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="8ff6cab4-62a5-45e2-aba7-a5e569b13f94" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ce5841d1-7bf0-40ad-a3a1-22a908e7aeb5" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GXService.CardRecognize.Client.Broadcast {
+namespace GXService.CardRecognize.Client.BroadcastServiceReference {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Broadcast.IBroadcast", CallbackContract=typeof(GXService.CardRecognize.Client.Broadcast.IBroadcastCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BroadcastServiceReference.IBroadcast", CallbackContract=typeof(GXService.CardRecognize.Client.BroadcastServiceReference.IBroadcastCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IBroadcast {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBroadcast/Connect")]
@@ -42,12 +42,12 @@ namespace GXService.CardRecognize.Client.Broadcast {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IBroadcastChannel : GXService.CardRecognize.Client.Broadcast.IBroadcast, System.ServiceModel.IClientChannel {
+    public interface IBroadcastChannel : GXService.CardRecognize.Client.BroadcastServiceReference.IBroadcast, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BroadcastClient : System.ServiceModel.DuplexClientBase<GXService.CardRecognize.Client.Broadcast.IBroadcast>, GXService.CardRecognize.Client.Broadcast.IBroadcast {
+    public partial class BroadcastClient : System.ServiceModel.DuplexClientBase<GXService.CardRecognize.Client.BroadcastServiceReference.IBroadcast>, GXService.CardRecognize.Client.BroadcastServiceReference.IBroadcast {
         
         public BroadcastClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {

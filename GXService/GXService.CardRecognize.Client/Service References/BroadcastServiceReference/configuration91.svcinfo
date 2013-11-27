@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="9iPLMBc92FGf+3LCAXNglpJO8Zw=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Q4O4VANFTCWiVqniWXeBPWTh374=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IBroadcast">
       <properties>
@@ -118,7 +118,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IBroadcast" contract="Broadcast.IBroadcast" bindingType="netTcpBinding" address="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc" bindingConfiguration="NetTcpBinding_IBroadcast">
+    <endpoint name="NetTcpBinding_IBroadcast" contract="BroadcastServiceReference.IBroadcast" bindingType="netTcpBinding" address="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc" bindingConfiguration="NetTcpBinding_IBroadcast">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>net.tcp://localhost/GXService/Broadcast/BroadcastService.svc</serializedValue>
@@ -133,7 +133,7 @@
           <serializedValue>NetTcpBinding_IBroadcast</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>Broadcast.IBroadcast</serializedValue>
+          <serializedValue>BroadcastServiceReference.IBroadcast</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

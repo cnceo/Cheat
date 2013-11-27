@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="GXService.CardRecognize.Contract" />
+  <xs:element name="ParseCardType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q1:ArrayOfCard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ParseCardTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="GXService.CardRecognize.Contract" minOccurs="0" name="ParseCardTypeResult" nillable="true" type="q2:CardTypeResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ParseCardTypeVsEnemy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q3:ArrayOfCard" />
+        <xs:element xmlns:q4="GXService.CardRecognize.Contract" minOccurs="0" name="cardsEnemy" nillable="true" type="q4:ArrayOfCard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ParseCardTypeVsEnemyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="GXService.CardRecognize.Contract" minOccurs="0" name="ParseCardTypeVsEnemyResult" nillable="true" type="q5:CardTypeResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
