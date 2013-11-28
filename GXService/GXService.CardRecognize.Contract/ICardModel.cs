@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Linq;
 
 namespace GXService.CardRecognize.Contract
 {
@@ -45,6 +46,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     [DataContract(Namespace = "GXService.CardRecognize.Contract")]
+    [KnownType(typeof(Card))]
     public class Card
     {
         [DataMember]
@@ -91,6 +93,13 @@ namespace GXService.CardRecognize.Contract
         }
     }
 
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
+    public class CardSet
+    {
+        [DataMember]
+        public List<Card> Cards { get; set; }
+    }
+
     //各种牌型的枚举
     public enum EmTypeCard
     {
@@ -134,6 +143,12 @@ namespace GXService.CardRecognize.Contract
     [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public abstract class CardType
     {
+        [DataMember]
+        protected List<Card> Cards;
+
+        [DataMember] 
+        protected EmTypeCard CardTypeEm;
+
         public int Compare(CardType c, EmRegionCompare r)
         {
             var ret = CompareTypeRule(c);
@@ -176,11 +191,17 @@ namespace GXService.CardRecognize.Contract
             return ret;
         }
 
-        public abstract ReadOnlyCollection<Card> GetCards();
+        public List<Card> GetCards()
+        {
+            return Cards.ToList();
+        }
+
+        public EmTypeCard GetCardEmType()
+        {
+            return CardTypeEm;
+        }
 
         protected abstract int CompareWithSameType(CardType c);
-
-        public abstract EmTypeCard GetCardEmType();
 
         protected abstract int GetHeadPoint();
 
@@ -193,7 +214,6 @@ namespace GXService.CardRecognize.Contract
     //同花顺牌型
     public class StraightFlushCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int BodyPoint = 10;
         protected const int TailPoint = 5;
 
@@ -206,12 +226,9 @@ namespace GXService.CardRecognize.Contract
                 cards.Add(cards[0]);
                 cards.RemoveAt(0);
             }
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.StraightFlush;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -232,12 +249,7 @@ namespace GXService.CardRecognize.Contract
                               ? 1
                               : -1);
         }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.StraightFlush;
-        }
-
+        
         protected override int GetHeadPoint()
         {
             throw new InvalidDataException("此牌型不能放在头墩");
@@ -257,18 +269,14 @@ namespace GXService.CardRecognize.Contract
     //同花牌型
     public class FlushCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int BodyPoint = 1;
         protected const int TailPoint = 1;
 
-        public FlushCardType(IList<Card> cards)
+        public FlushCardType(IEnumerable<Card> cards)
         {
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.Flush;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -284,11 +292,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Color > ct.Cards[0].Color
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.Flush;
         }
 
         protected override int GetHeadPoint()
@@ -310,18 +313,14 @@ namespace GXService.CardRecognize.Contract
     //杂顺牌型
     public class StraightCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int BodyPoint = 1;
         protected const int TailPoint = 1;
 
-        public StraightCardType(IList<Card> cards)
+        public StraightCardType(IEnumerable<Card> cards)
         {
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.Straight;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -337,11 +336,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Num > ct.Cards[0].Num
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.Straight;
         }
 
         protected override int GetHeadPoint()
@@ -363,18 +357,14 @@ namespace GXService.CardRecognize.Contract
     //炸弹牌型(4+1)
     public class BoomCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int BodyPoint = 8;
         protected const int TailPoint = 4;
 
-        public BoomCardType(IList<Card> cards)
+        public BoomCardType(IEnumerable<Card> cards)
         {
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.Boom;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -390,11 +380,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Num > ct.Cards[0].Num
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.Boom;
         }
 
         protected override int GetHeadPoint()
@@ -416,18 +401,14 @@ namespace GXService.CardRecognize.Contract
     //葫芦牌型(3+2)
     public class GourdCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int BodyPoint = 2;
         protected const int TailPoint = 2;
 
-        public GourdCardType(IList<Card> cards)
+        public GourdCardType(IEnumerable<Card> cards)
         {
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.Gourd;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -443,11 +424,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Num > ct.Cards[0].Num
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.Gourd;
         }
 
         protected override int GetHeadPoint()
@@ -469,18 +445,14 @@ namespace GXService.CardRecognize.Contract
     //3+1+1牌型
     public class ThreeSameCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int BodyPoint = 1;
         protected const int TailPoint = 1;
 
-        public ThreeSameCardType(IList<Card> cards)
+        public ThreeSameCardType(IEnumerable<Card> cards)
         {
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.ThreeSame;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -496,11 +468,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Num > ct.Cards[0].Num
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.ThreeSame;
         }
 
         protected override int GetHeadPoint()
@@ -522,18 +489,14 @@ namespace GXService.CardRecognize.Contract
     //2+2+1牌型
     public class DoublePairCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int BodyPoint = 1;
         protected const int TailPoint = 1;
 
-        public DoublePairCardType(IList<Card> cards)
+        public DoublePairCardType(IEnumerable<Card> cards)
         {
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.DoublePair;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -555,11 +518,6 @@ namespace GXService.CardRecognize.Contract
                               : -1);
         }
 
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.DoublePair;
-        }
-
         protected override int GetHeadPoint()
         {
             throw new InvalidDataException("此牌型不能放在头墩");
@@ -579,18 +537,14 @@ namespace GXService.CardRecognize.Contract
     //2+1+1+1牌型
     public class OnePairCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int BodyPoint = 1;
         protected const int TailPoint = 1;
 
-        public OnePairCardType(IList<Card> cards)
+        public OnePairCardType(IEnumerable<Card> cards)
         {
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.OnePair;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -606,11 +560,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Num > ct.Cards[0].Num
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.OnePair;
         }
 
         protected override int GetHeadPoint()
@@ -632,19 +581,15 @@ namespace GXService.CardRecognize.Contract
     //1+1+1+1+1牌型
     public class NoTypeCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int BodyPoint = 1;
         protected const int TailPoint = 1;
 
         public NoTypeCardType(List<Card> cards)
         {
             cards.Sort((card, card1) => card.Num == card1.Num ? 0 : (card.Num > card1.Num ? -1 : 1));
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.NoType;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -660,11 +605,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Num > ct.Cards[0].Num
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.NoType;
         }
 
         protected override int GetHeadPoint()
@@ -688,17 +628,13 @@ namespace GXService.CardRecognize.Contract
     //冲3牌型
     public class ThreeSameInHeadCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int HeadPoint = 3;
 
-        public ThreeSameInHeadCardType(IList<Card> cards)
+        public ThreeSameInHeadCardType(IEnumerable<Card> cards)
         {
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.ThreeSame;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -714,11 +650,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Num > ct.Cards[0].Num
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.ThreeSame;
         }
 
         protected override int GetHeadPoint()
@@ -739,17 +670,13 @@ namespace GXService.CardRecognize.Contract
     //一对牌型
     public class PairInHeadCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int HeadPoint = 1;
 
-        public PairInHeadCardType(IList<Card> cards)
+        public PairInHeadCardType(IEnumerable<Card> cards)
         {
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.OnePair;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -765,11 +692,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Num > ct.Cards[0].Num
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.OnePair;
         }
 
         protected override int GetHeadPoint()
@@ -791,18 +713,14 @@ namespace GXService.CardRecognize.Contract
     //1+1+1牌型
     public class NoTypeInHeadCardType : CardType
     {
-        protected readonly ReadOnlyCollection<Card> Cards;
         protected const int HeadPoint = 1;
 
         public NoTypeInHeadCardType(List<Card> cards)
         {
             cards.Sort((card, card1) => card.Num == card1.Num ? 0 : (card.Num > card1.Num ? -1 : 1));
-            Cards = new ReadOnlyCollection<Card>(cards);
-        }
+            Cards = cards.ToList();
 
-        public override ReadOnlyCollection<Card> GetCards()
-        {
-            return Cards;
+            CardTypeEm = EmTypeCard.NoType;
         }
 
         protected override int CompareWithSameType(CardType c)
@@ -818,11 +736,6 @@ namespace GXService.CardRecognize.Contract
                        : (Cards[0].Num > ct.Cards[0].Num
                               ? 1
                               : -1);
-        }
-
-        public override EmTypeCard GetCardEmType()
-        {
-            return EmTypeCard.NoType;
         }
 
         protected override int GetHeadPoint()

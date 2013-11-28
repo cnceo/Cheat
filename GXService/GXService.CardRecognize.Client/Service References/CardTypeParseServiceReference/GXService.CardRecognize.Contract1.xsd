@@ -165,4 +165,18 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="CardNum" nillable="true" type="tns:CardNum" />
+  <xs:simpleType name="EmTypeCard">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NoType" />
+      <xs:enumeration value="OnePair" />
+      <xs:enumeration value="DoublePair" />
+      <xs:enumeration value="ThreeSame" />
+      <xs:enumeration value="Straight" />
+      <xs:enumeration value="Flush" />
+      <xs:enumeration value="Gourd" />
+      <xs:enumeration value="Boom" />
+      <xs:enumeration value="StraightFlush" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EmTypeCard" nillable="true" type="tns:EmTypeCard" />
 </xs:schema>
