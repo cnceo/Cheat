@@ -8,11 +8,9 @@ namespace GXService.CardRecognize.Contract
     public interface ICardTypeParser
     {
         [OperationContract]
-        [ServiceKnownType(typeof(Card))]
-        CardTypeResult ParseCardType(CardSet cards);
+        CardTypeResult ParseCardType(List<Card> cards);
 
         [OperationContract]
-        [ServiceKnownType(typeof(Card))]
-        CardTypeResult ParseCardTypeVsEnemy(CardSet cards, CardSet cardsEnemy);
+        CardTypeResult ParseCardTypeVsEnemy(List<Card> cards, List<Card> cardsEnemy);
     }
 }

@@ -53,7 +53,7 @@ namespace GXService.CardRecognize.Client
 
                 var cardsTest = new CardsTest();
                 var cards = cardsTest.GetNextPlayerCards(13);
-                var resultParseType = _proxyParser.ParseCardType(new CardSet{Cards = cards.ToArray()});
+                var resultParseType = _proxyParser.ParseCardType(cards.ToArray());
                 var end = DateTime.Now;
 
                 using (var fs = new FileStream("result.txt", FileMode.Truncate))
@@ -61,30 +61,37 @@ namespace GXService.CardRecognize.Client
                     using (var sw = new StreamWriter(fs))
                     {
                         var resultDisplay = "";
-                        cards.ForEach(card => resultDisplay += "{" + card.Color + "," + card.Num + "}");
+                        cards.ForEach(card => resultDisplay += card.ToString());
                         sw.WriteLine(resultDisplay);
 
-                        var tmp = "";
+                        CardTypeResult best = null;
+                        //resultParseType.ToList()
+                        //    .ForEach(ctr =>
+                        //{
+                        //    if (best == null)
+                        //    {
+                        //        best = ctr;
+                        //    }
+                        //    else
+                        //    {
+                        //        best = best.Compare(ctr) >= 0 ? best : ctr;
+                        //    }
+                        //});
 
-                        resultParseType.CardTypeHead
-                                       .Cards
-                                       .ToList()
-                                       .ForEach(card => tmp += "{" + card.Color + "," + card.Num + "}");
-                        tmp += "(" + resultParseType.CardTypeHead.CardTypeEm + ")   ";
+                        //var tmp = "";
 
-                        resultParseType.CardTypeMiddle
-                                       .Cards
-                                       .ToList()
-                                       .ForEach(card => tmp += "{" + card.Color + "," + card.Num + "}");
-                        tmp += "(" + resultParseType.CardTypeMiddle.CardTypeEm + ")   ";
+                        //best.CardTypeHead.GetCards().ToList().ForEach(card => tmp += card.ToString());
+                        //tmp += "(" + best.CardTypeHead.GetCardEmType() + ")   ";
 
-                        resultParseType.CardTypeTail
-                                       .Cards
-                                       .ToList()
-                                       .ForEach(card => tmp += "{" + card.Color + "," + card.Num + "}");
-                        tmp += "(" + resultParseType.CardTypeTail.CardTypeEm + ")";
+                        //best.CardTypeMiddle.GetCards()
+                        //   .ToList()
+                        //   .ForEach(card => tmp += card.ToString());
+                        //tmp += "(" + best.CardTypeMiddle.GetCardEmType() + ")   ";
 
-                        sw.WriteLine(tmp);
+                        //best.CardTypeTail.GetCards().ToList().ForEach(card => tmp += card.ToString());
+                        //tmp += "(" + best.CardTypeTail.GetCardEmType() + ")";
+
+                        //sw.WriteLine(tmp);
                     }
                 }
             }
