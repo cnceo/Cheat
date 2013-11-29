@@ -15,51 +15,6 @@ namespace GXService.CardRecognize.Client.CardTypeParseServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CardSet", Namespace="GXService.CardRecognize.Contract")]
-    [System.SerializableAttribute()]
-    public partial class CardSet : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] CardsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] Cards {
-            get {
-                return this.CardsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CardsField, value) != true)) {
-                    this.CardsField = value;
-                    this.RaisePropertyChanged("Cards");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Card", Namespace="GXService.CardRecognize.Contract")]
     [System.SerializableAttribute()]
     public partial class Card : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -276,6 +231,18 @@ namespace GXService.CardRecognize.Client.CardTypeParseServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CardType", Namespace="GXService.CardRecognize.Contract")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.DoublePairCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.ThreeSameCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.StraightFlushCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.NoTypeInHeadCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.StraightCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.BoomCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.GourdCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.FlushCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.OnePairCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.NoTypeCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.ThreeSameInHeadCardType))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GXService.CardRecognize.Client.CardTypeParseServiceReference.PairInHeadCardType))]
     public partial class CardType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -333,6 +300,90 @@ namespace GXService.CardRecognize.Client.CardTypeParseServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DoublePairCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class DoublePairCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ThreeSameCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class ThreeSameCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StraightFlushCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class StraightFlushCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NoTypeInHeadCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class NoTypeInHeadCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StraightCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class StraightCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BoomCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class BoomCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GourdCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class GourdCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FlushCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class FlushCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OnePairCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class OnePairCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NoTypeCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class NoTypeCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ThreeSameInHeadCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class ThreeSameInHeadCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PairInHeadCardType", Namespace="GXService.CardRecognize.Contract")]
+    [System.SerializableAttribute()]
+    public partial class PairInHeadCardType : GXService.CardRecognize.Client.CardTypeParseServiceReference.CardType {
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="EmTypeCard", Namespace="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract")]
     public enum EmTypeCard : int {
@@ -370,16 +421,16 @@ namespace GXService.CardRecognize.Client.CardTypeParseServiceReference {
     public interface ICardTypeParser {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardType", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeResponse")]
-        GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardType(GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cards);
+        GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardType(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardType", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeResponse")]
-        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cards);
+        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardTypeVsEnemy", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeVsEnemyResponse")]
-        GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardTypeVsEnemy(GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cardsEnemy);
+        GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardTypeVsEnemy(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cardsEnemy);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardTypeParser/ParseCardTypeVsEnemy", ReplyAction="http://tempuri.org/ICardTypeParser/ParseCardTypeVsEnemyResponse")]
-        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeVsEnemyAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cardsEnemy);
+        System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeVsEnemyAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cardsEnemy);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -409,19 +460,19 @@ namespace GXService.CardRecognize.Client.CardTypeParseServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardType(GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cards) {
+        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardType(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards) {
             return base.Channel.ParseCardType(cards);
         }
         
-        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cards) {
+        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards) {
             return base.Channel.ParseCardTypeAsync(cards);
         }
         
-        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardTypeVsEnemy(GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cardsEnemy) {
+        public GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult ParseCardTypeVsEnemy(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cardsEnemy) {
             return base.Channel.ParseCardTypeVsEnemy(cards, cardsEnemy);
         }
         
-        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeVsEnemyAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.CardSet cardsEnemy) {
+        public System.Threading.Tasks.Task<GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult> ParseCardTypeVsEnemyAsync(GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cards, GXService.CardRecognize.Client.CardTypeParseServiceReference.Card[] cardsEnemy) {
             return base.Channel.ParseCardTypeVsEnemyAsync(cards, cardsEnemy);
         }
     }

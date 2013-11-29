@@ -53,10 +53,10 @@ namespace GXService.CardRecognize.Client
 
                 var cardsTest = new CardsTest();
                 var cards = cardsTest.GetNextPlayerCards(13);
-                var resultParseType = _proxyParser.ParseCardType(new CardSet{Cards = cards.ToArray()});
+                var resultParseType = _proxyParser.ParseCardType(cards.ToArray());
                 var end = DateTime.Now;
 
-                using (var fs = new FileStream("result.txt", FileMode.Truncate))
+                using (var fs = new FileStream("result.txt", FileMode.Create))
                 {
                     using (var sw = new StreamWriter(fs))
                     {

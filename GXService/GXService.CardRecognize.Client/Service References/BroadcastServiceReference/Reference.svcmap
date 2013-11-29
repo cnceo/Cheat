@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="d94a9c2f-abf9-4987-ae4f-729930c8ad0c" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
-    <MetadataFile FileName="GXService.Broadcast.wsdl" MetadataType="Wsdl" ID="21e2f219-84c6-441d-bcae-df3e2339f8da" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="8ff6cab4-62a5-45e2-aba7-a5e569b13f94" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ce5841d1-7bf0-40ad-a3a1-22a908e7aeb5" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="d6cc86cb-a69c-48e4-b8c4-0801389bfa35" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex/mex" />
+    <MetadataFile FileName="GXService.Broadcast1.wsdl" MetadataType="Wsdl" ID="c787b49e-d063-4cc4-a41d-747876950fba" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="2ee6dee2-1205-4d25-a9bf-5865bd4e9892" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="667adf2c-21e3-41cf-9412-0fb4816c5dbf" SourceId="1" SourceUrl="net.tcp://localhost/GXService/Broadcast/BroadcastService.svc/BroadcastMex/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

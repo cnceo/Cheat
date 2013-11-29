@@ -222,7 +222,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IBroadcast_Close_Input_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_IBroadcast_Disconnect_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -293,8 +293,8 @@
   <wsdl:message name="IBroadcast_Broadcast_OutputMessage">
     <wsdl:part name="parameters" element="tns:BroadcastResponse" />
   </wsdl:message>
-  <wsdl:message name="IBroadcast_Close_InputMessage">
-    <wsdl:part name="parameters" element="tns:Close" />
+  <wsdl:message name="IBroadcast_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
   </wsdl:message>
   <wsdl:message name="IBroadcast_OnDataBroadcast_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnDataBroadcast" />
@@ -307,8 +307,8 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBroadcast/Broadcast" message="tns:IBroadcast_Broadcast_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBroadcast/BroadcastResponse" message="tns:IBroadcast_Broadcast_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="false" msc:isTerminating="true" name="Close">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBroadcast/Close" message="tns:IBroadcast_Close_InputMessage" />
+    <wsdl:operation msc:isInitiating="false" msc:isTerminating="true" name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBroadcast/Disconnect" message="tns:IBroadcast_Disconnect_InputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="OnDataBroadcast">
       <wsdl:output wsaw:Action="http://tempuri.org/IBroadcast/OnDataBroadcast" message="tns:IBroadcast_OnDataBroadcast_OutputCallbackMessage" />
@@ -339,10 +339,10 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Close">
-      <soap12:operation soapAction="http://tempuri.org/IBroadcast/Close" style="document" />
+    <wsdl:operation name="Disconnect">
+      <soap12:operation soapAction="http://tempuri.org/IBroadcast/Disconnect" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#NetTcpBinding_IBroadcast_Close_Input_policy">
+        <wsp:PolicyReference URI="#NetTcpBinding_IBroadcast_Disconnect_Input_policy">
         </wsp:PolicyReference>
         <soap12:body use="literal" />
       </wsdl:input>

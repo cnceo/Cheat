@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex/mex/mex/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="65e1968b-4aac-4bcc-91d5-81aabe7fb529" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="dd9197d4-0fec-4508-81d7-b378a829f5ce" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex" />
-    <MetadataFile FileName="GXService.CardRecognize.Contract.xsd" MetadataType="Schema" ID="89bd1363-a47e-46db-8ed3-5415ebf77e12" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex" />
-    <MetadataFile FileName="GXService.CardRecognize.Contract1.xsd" MetadataType="Schema" ID="df14a0e3-5c75-4606-98a4-e00b9c0ff2c5" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="fdc098cd-940f-42b6-b770-9ca698079c69" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="8d95da48-ddd7-4e44-b002-1532f8689d28" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex/mex/mex/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="864cda2b-0985-41c7-95c5-70d4b803074d" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex/mex/mex/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="b23bea73-ca9a-45b0-b107-bb186eb6b604" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex/mex/mex/mex" />
+    <MetadataFile FileName="GXService.CardRecognize.Contract2.xsd" MetadataType="Schema" ID="5487f2a6-45e2-43c2-aa31-44ee94b9e8da" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex/mex/mex/mex" />
+    <MetadataFile FileName="GXService.CardRecognize.Contract21.xsd" MetadataType="Schema" ID="46a79ffb-07b4-4889-8c92-89739971c5a5" SourceId="1" SourceUrl="net.tcp://localhost/GXService/CardRecognize/CardTypeParseService.svc/CardTypeParseMex/mex/mex/mex/mex/mex/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

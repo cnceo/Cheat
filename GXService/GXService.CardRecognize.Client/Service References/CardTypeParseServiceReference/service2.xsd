@@ -4,7 +4,7 @@
   <xs:element name="ParseCardType">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q1:CardSet" />
+        <xs:element xmlns:q1="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q1:ArrayOfCard" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -18,8 +18,8 @@
   <xs:element name="ParseCardTypeVsEnemy">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q3:CardSet" />
-        <xs:element xmlns:q4="GXService.CardRecognize.Contract" minOccurs="0" name="cardsEnemy" nillable="true" type="q4:CardSet" />
+        <xs:element xmlns:q3="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q3:ArrayOfCard" />
+        <xs:element xmlns:q4="GXService.CardRecognize.Contract" minOccurs="0" name="cardsEnemy" nillable="true" type="q4:ArrayOfCard" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -27,11 +27,11 @@ namespace GXService.CardRecognize.Client.BroadcastServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBroadcast/Broadcast", ReplyAction="http://tempuri.org/IBroadcast/BroadcastResponse")]
         System.Threading.Tasks.Task BroadcastAsync(byte[] data);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, IsTerminating=true, IsInitiating=false, Action="http://tempuri.org/IBroadcast/Close")]
-        void Close();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, IsTerminating=true, IsInitiating=false, Action="http://tempuri.org/IBroadcast/Disconnect")]
+        void Disconnect();
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, IsTerminating=true, IsInitiating=false, Action="http://tempuri.org/IBroadcast/Close")]
-        System.Threading.Tasks.Task CloseAsync();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, IsTerminating=true, IsInitiating=false, Action="http://tempuri.org/IBroadcast/Disconnect")]
+        System.Threading.Tasks.Task DisconnectAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -85,12 +85,12 @@ namespace GXService.CardRecognize.Client.BroadcastServiceReference {
             return base.Channel.BroadcastAsync(data);
         }
         
-        public void Close() {
-            base.Channel.Close();
+        public void Disconnect() {
+            base.Channel.Disconnect();
         }
         
-        public System.Threading.Tasks.Task CloseAsync() {
-            return base.Channel.CloseAsync();
+        public System.Threading.Tasks.Task DisconnectAsync() {
+            return base.Channel.DisconnectAsync();
         }
     }
 }

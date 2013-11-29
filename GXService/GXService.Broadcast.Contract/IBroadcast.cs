@@ -18,6 +18,6 @@ namespace GXService.Broadcast.Contract
         void Broadcast(byte[] data);
 
         [OperationContract(IsOneWay = true, IsInitiating = false, IsTerminating = true)]
-        void Close();
+        void Disconnect();
     }
 }

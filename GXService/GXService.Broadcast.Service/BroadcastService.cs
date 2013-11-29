@@ -31,7 +31,7 @@ namespace GXService.Broadcast.Service
                         SessionId = _currentSessionId,
                         BroadcastCallBack = callBack
                     };
-                OperationContext.Current.Channel.Closing += (sender, args) => Close();
+                OperationContext.Current.Channel.Closing += (sender, args) => Disconnect();
             }
         }
 
@@ -44,7 +44,7 @@ namespace GXService.Broadcast.Service
                          client.Value.BroadcastCallBack.OnDataBroadcast(data));
         }
 
-        public void Close()
+        public void Disconnect()
         {
             if (!string.IsNullOrEmpty(_currentSessionId) && DicClients.ContainsKey(_currentSessionId))
             {

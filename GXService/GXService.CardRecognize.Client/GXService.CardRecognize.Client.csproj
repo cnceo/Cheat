@@ -131,44 +131,44 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\BroadcastServiceReference\GXService.Broadcast.wsdl" />
-    <None Include="Service References\BroadcastServiceReference\service.wsdl" />
-    <None Include="Service References\BroadcastServiceReference\service.xsd">
+    <None Include="Service References\BroadcastServiceReference\GXService.Broadcast1.wsdl" />
+    <None Include="Service References\BroadcastServiceReference\service1.wsdl" />
+    <None Include="Service References\BroadcastServiceReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BroadcastServiceReference\service1.xsd">
+    <None Include="Service References\BroadcastServiceReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Client.CardRecognizeServiceReference.RecognizeResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract1.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognizeServiceReference\service.wsdl" />
-    <None Include="Service References\CardRecognizeServiceReference\service.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\service1.wsdl" />
+    <None Include="Service References\CardRecognizeServiceReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognizeServiceReference\service1.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\CardTypeParseServiceReference\GXService.CardRecognize.Client.CardTypeParseServiceReference.CardTypeResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\CardTypeParseServiceReference\GXService.CardRecognize.Contract.xsd">
+    <None Include="Service References\CardTypeParseServiceReference\GXService.CardRecognize.Contract2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardTypeParseServiceReference\GXService.CardRecognize.Contract1.xsd">
+    <None Include="Service References\CardTypeParseServiceReference\GXService.CardRecognize.Contract21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardTypeParseServiceReference\service.wsdl" />
-    <None Include="Service References\CardTypeParseServiceReference\service.xsd">
+    <None Include="Service References\CardTypeParseServiceReference\service1.wsdl" />
+    <None Include="Service References\CardTypeParseServiceReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardTypeParseServiceReference\service1.xsd">
+    <None Include="Service References\CardTypeParseServiceReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

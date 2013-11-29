@@ -46,7 +46,6 @@ namespace GXService.CardRecognize.Contract
     }
 
     [DataContract(Namespace = "GXService.CardRecognize.Contract")]
-    [KnownType(typeof(Card))]
     public class Card
     {
         [DataMember]
@@ -141,6 +140,18 @@ namespace GXService.CardRecognize.Contract
 
     //牌型对象的基类
     [DataContract(Namespace = "GXService.CardRecognize.Contract")]
+    [KnownType(typeof(StraightFlushCardType))]
+    [KnownType(typeof(FlushCardType))]
+    [KnownType(typeof(StraightCardType))]
+    [KnownType(typeof(BoomCardType))]
+    [KnownType(typeof(GourdCardType))]
+    [KnownType(typeof(ThreeSameCardType))]
+    [KnownType(typeof(DoublePairCardType))]
+    [KnownType(typeof(OnePairCardType))]
+    [KnownType(typeof(NoTypeCardType))]
+    [KnownType(typeof(ThreeSameInHeadCardType))]
+    [KnownType(typeof(PairInHeadCardType))]
+    [KnownType(typeof(NoTypeInHeadCardType))]
     public abstract class CardType
     {
         [DataMember]
@@ -212,6 +223,7 @@ namespace GXService.CardRecognize.Contract
 
     #region 中墩/尾墩牌型
     //同花顺牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class StraightFlushCardType : CardType
     {
         protected const int BodyPoint = 10;
@@ -267,6 +279,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     //同花牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class FlushCardType : CardType
     {
         protected const int BodyPoint = 1;
@@ -311,6 +324,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     //杂顺牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class StraightCardType : CardType
     {
         protected const int BodyPoint = 1;
@@ -355,6 +369,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     //炸弹牌型(4+1)
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class BoomCardType : CardType
     {
         protected const int BodyPoint = 8;
@@ -399,6 +414,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     //葫芦牌型(3+2)
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class GourdCardType : CardType
     {
         protected const int BodyPoint = 2;
@@ -443,6 +459,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     //3+1+1牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class ThreeSameCardType : CardType
     {
         protected const int BodyPoint = 1;
@@ -487,6 +504,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     //2+2+1牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class DoublePairCardType : CardType
     {
         protected const int BodyPoint = 1;
@@ -535,6 +553,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     //2+1+1+1牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class OnePairCardType : CardType
     {
         protected const int BodyPoint = 1;
@@ -579,6 +598,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     //1+1+1+1+1牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class NoTypeCardType : CardType
     {
         protected const int BodyPoint = 1;
@@ -626,6 +646,7 @@ namespace GXService.CardRecognize.Contract
 
     #region 头墩牌型
     //冲3牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class ThreeSameInHeadCardType : CardType
     {
         protected const int HeadPoint = 3;
@@ -667,7 +688,9 @@ namespace GXService.CardRecognize.Contract
             throw new InvalidDataException("此牌型不能放在尾墩");
         }
     }
+
     //一对牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class PairInHeadCardType : CardType
     {
         protected const int HeadPoint = 1;
@@ -711,6 +734,7 @@ namespace GXService.CardRecognize.Contract
     }
 
     //1+1+1牌型
+    [DataContract(Namespace = "GXService.CardRecognize.Contract")]
     public class NoTypeInHeadCardType : CardType
     {
         protected const int HeadPoint = 1;
