@@ -22,14 +22,14 @@ namespace GXService.CardRecognize.Service
                 new OnePieceCardTypeRecognizer()
             };
 
-        public CardTypeResult ParseCardType(List<Card> cards)
+        public CardTypeResult ParseCardType(CardSet cards)
         {
-            return GetBestResult(ParseCardTypeResult(cards));
+            return GetBestResult(ParseCardTypeResult(cards.Cards));
         }
 
-        public CardTypeResult ParseCardTypeVsEnemy(List<Card> cards, List<Card> cardsEnemy)
+        public CardTypeResult ParseCardTypeVsEnemy(CardSet cards, CardSet cardsEnemy)
         {
-            return GetBestResult(ParseCardType(cards), ParseCardTypeResult(cardsEnemy));
+            return GetBestResult(ParseCardType(cards), ParseCardTypeResult(cards.Cards));
         }
 
         private List<CardTypeResult> ParseCardTypeResult(IEnumerable<Card> cards)
