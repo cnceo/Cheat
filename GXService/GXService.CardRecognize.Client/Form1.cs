@@ -9,18 +9,13 @@ using System.Threading;
 using System.Windows.Forms;
 using GXService.CardRecognize.Client.BroadcastServiceReference;
 using GXService.CardRecognize.Client.CardRecognizeServiceReference;
-using GXService.CardRecognize.Client.CardTypeParseServiceReference;
 using GXService.Utils;
-using Card = GXService.CardRecognize.Client.CardTypeParseServiceReference.Card;
-using CardColor = GXService.CardRecognize.Client.CardTypeParseServiceReference.CardColor;
-using CardNum = GXService.CardRecognize.Client.CardTypeParseServiceReference.CardNum;
 
 namespace GXService.CardRecognize.Client
 {
     public partial class Form1 : Form
     {
         private readonly CardsRecognizerClient _proxyRecognize = new CardsRecognizerClient();
-        private readonly CardTypeParserClient _proxyParser = new CardTypeParserClient();
         private readonly BroadcastClient _proxyBroadcast;
         private readonly BroadcastCallback _broadcastCallback = new BroadcastCallback();
         private string _cardsDisplay = "";
@@ -45,15 +40,30 @@ namespace GXService.CardRecognize.Client
 
             try
             {
-                _proxyParser.ClientCredentials.UserName.UserName = "show";
-                _proxyParser.ClientCredentials.UserName.Password = "test";
+
+                var bmp = Image.FromFile(@"test.bmp") as Bitmap;
+                if (null == bmp || _proxyRecognize.ClientCredentials == null)
+                {
+                    return;
+                }
+
+                _proxyRecognize.ClientCredentials.UserName.UserName = "show";
+                _proxyRecognize.ClientCredentials.UserName.Password = "test";
+                _proxyRecognize.Open();
+
+                var result = _proxyRecognize.Recognize(new RecoginizeData
+                    {
+                        GameTypeTemplate = GameTemplateType.斗地主手牌,
+                        CardsBitmap = Util.Serialize(bmp.Clone(new Rectangle(280, 590, 400, 50), bmp.PixelFormat))
+                    });
 
                 var begin = DateTime.Now;
                 //MouseInputManager.Click(514, 396);
 
                 var cardsTest = new CardsTest();
                 var cards = cardsTest.GetNextPlayerCards(13);
-                var resultParseType = _proxyParser.ParseCardType(cards.ToArray());
+                cards = result.Result.ToList();
+                var resultParseType = _proxyRecognize.ParseCardType(cards.ToArray());
                 var end = DateTime.Now;
 
                 using (var fs = new FileStream("result.txt", FileMode.Create))
@@ -86,39 +96,6 @@ namespace GXService.CardRecognize.Client
 
                         sw.WriteLine(tmp);
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.InnerException == null ? ex.ToString() : ex.InnerException.ToString());
-            }
-
-            return;
-
-            var bmp = Image.FromFile(@"test.bmp") as Bitmap;
-            if (null == bmp || _proxyRecognize.ClientCredentials == null)
-            {
-                return;
-            }
-
-            _proxyRecognize.ClientCredentials.UserName.UserName = "show";
-            _proxyRecognize.ClientCredentials.UserName.Password = "test";
-
-            try
-            {
-                while (true)
-                {
-                    var result = _proxyRecognize.Recognize(new RecoginizeData
-                    {
-                        GameTypeTemplate = GameTemplateType.斗地主手牌,
-                        CardsBitmap = Util.Serialize(bmp.Clone(new Rectangle(280, 590, 400, 50), bmp.PixelFormat))
-                    });
-
-                    result.Result
-                          .ToList()
-                          .ForEach(card => _cardsDisplay += card.Color.ToString() + card.Num.ToString());
-
-                    Thread.Sleep(2000);
                 }
             }
             catch (Exception ex)

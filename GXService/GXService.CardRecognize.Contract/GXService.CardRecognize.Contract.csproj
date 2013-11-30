@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="ICardModel.cs" />
     <Compile Include="ICardRecognizer.cs" />
-    <Compile Include="ICardTypeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

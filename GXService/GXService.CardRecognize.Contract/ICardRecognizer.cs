@@ -14,6 +14,12 @@ namespace GXService.CardRecognize.Contract
         [OperationContract]
         RecognizeResult Recognize(RecoginizeData data);
 
+        [OperationContract]
+        CardTypeResult ParseCardType(List<Card> cards);
+
+        [OperationContract]
+        CardTypeResult ParseCardTypeVsEnemy(List<Card> cards, List<Card> cardsEnemy);
+
         [OperationContract(IsOneWay = true, IsInitiating = false, IsTerminating = true)]
         void Stop();
     }

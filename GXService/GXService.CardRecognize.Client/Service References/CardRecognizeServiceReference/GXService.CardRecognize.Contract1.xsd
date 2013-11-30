@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="GXService.CardRecognize.Contract" elementFormDefault="qualified" targetNamespace="GXService.CardRecognize.Contract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" />
+  <xs:complexType name="ArrayOfCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Card" nillable="true" type="tns:Card" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCard" nillable="true" type="tns:ArrayOfCard" />
+  <xs:complexType name="Card">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" minOccurs="0" name="Color" type="q1:CardColor" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" minOccurs="0" name="Num" type="q2:CardNum" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Card" nillable="true" type="tns:Card" />
+  <xs:complexType name="CardTypeResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardTypeHead" nillable="true" type="tns:CardType" />
+      <xs:element minOccurs="0" name="CardTypeMiddle" nillable="true" type="tns:CardType" />
+      <xs:element minOccurs="0" name="CardTypeTail" nillable="true" type="tns:CardType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardTypeResult" nillable="true" type="tns:CardTypeResult" />
+  <xs:complexType name="CardType">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" minOccurs="0" name="CardTypeEm" type="q3:EmTypeCard" />
+      <xs:element minOccurs="0" name="Cards" nillable="true" type="tns:ArrayOfCard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardType" nillable="true" type="tns:CardType" />
+  <xs:complexType name="DoublePairCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DoublePairCardType" nillable="true" type="tns:DoublePairCardType" />
+  <xs:complexType name="FlushCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FlushCardType" nillable="true" type="tns:FlushCardType" />
+  <xs:complexType name="StraightCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StraightCardType" nillable="true" type="tns:StraightCardType" />
+  <xs:complexType name="BoomCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BoomCardType" nillable="true" type="tns:BoomCardType" />
+  <xs:complexType name="GourdCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GourdCardType" nillable="true" type="tns:GourdCardType" />
+  <xs:complexType name="ThreeSameCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ThreeSameCardType" nillable="true" type="tns:ThreeSameCardType" />
+  <xs:complexType name="PairInHeadCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PairInHeadCardType" nillable="true" type="tns:PairInHeadCardType" />
+  <xs:complexType name="OnePairCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OnePairCardType" nillable="true" type="tns:OnePairCardType" />
+  <xs:complexType name="NoTypeCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NoTypeCardType" nillable="true" type="tns:NoTypeCardType" />
+  <xs:complexType name="StraightFlushCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StraightFlushCardType" nillable="true" type="tns:StraightFlushCardType" />
+  <xs:complexType name="NoTypeInHeadCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NoTypeInHeadCardType" nillable="true" type="tns:NoTypeInHeadCardType" />
+  <xs:complexType name="ThreeSameInHeadCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ThreeSameInHeadCardType" nillable="true" type="tns:ThreeSameInHeadCardType" />
+</xs:schema>
