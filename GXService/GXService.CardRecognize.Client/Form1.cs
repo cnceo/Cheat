@@ -62,7 +62,7 @@ namespace GXService.CardRecognize.Client
 
                 var cardsTest = new CardsTest();
                 var cards = cardsTest.GetNextPlayerCards(13);
-                cards = result.Result.ToList();
+                cards = result.Result.Take(13).ToList();
                 var resultParseType = _proxyRecognize.ParseCardType(cards.ToArray());
                 var end = DateTime.Now;
 

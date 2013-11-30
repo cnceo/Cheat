@@ -198,21 +198,25 @@ namespace GXService.CardRecognize.Service
                         .ForEach(rec => resultTmp.AddRange(rec.Recognize(tmp)));
 
             resultTmp.ForEach(bodyType =>
-            {
-                var tmpCards = tmp.FindAll(card => !bodyType.GetCards().Contains(card)).ToList();
-                _recognizers
-                    .ForEach(rec =>
-                             rec.Recognize(tmpCards)
-                                .ForEach(tailType =>
-                                         result.Add(new CardTypeResult(
-                                                        HeadCardTypeFactory.GetSingleton()
-                                                                           .GetHeadCardType(tmp.FindAll(
-                                                                               card =>
-                                                                               !bodyType.GetCards().Contains(card) &&
-                                                                               !tailType.GetCards().Contains(card))
-                                                                                               .ToList()),
-                                                        bodyType, tailType))));
-            });
+                {
+                    var tmpCards = tmp.FindAll(card => !bodyType.GetCards().Contains(card)).ToList();
+                    _recognizers
+                        .ForEach(rec =>
+                                 rec.Recognize(tmpCards)
+                                    .ForEach(tailType =>
+                                        {
+                                            var headType = HeadCardTypeFactory.GetSingleton()
+                                                                              .GetHeadCardType(tmp.FindAll(
+                                                                                  card =>
+                                                                                  !bodyType.GetCards().Contains(card) &&
+                                                                                  !tailType.GetCards().Contains(card))
+                                                                                                  .ToList());
+                                            if (tailType.Compare(bodyType, EmRegionCompare.Tail) >= 0 && bodyType.CompareTypeRule(headType) >= 0)
+                                            {
+                                                result.Add(new CardTypeResult(headType, bodyType, tailType));   
+                                            }
+                                        }));
+                });
 
             return result;
         }
