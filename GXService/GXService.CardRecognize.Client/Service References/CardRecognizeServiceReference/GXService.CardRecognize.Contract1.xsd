@@ -37,14 +37,30 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="DoublePairCardType" nillable="true" type="tns:DoublePairCardType" />
-  <xs:complexType name="FlushCardType">
+  <xs:complexType name="ThreeSameCardType">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:CardType">
         <xs:sequence />
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="FlushCardType" nillable="true" type="tns:FlushCardType" />
+  <xs:element name="ThreeSameCardType" nillable="true" type="tns:ThreeSameCardType" />
+  <xs:complexType name="StraightFlushCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StraightFlushCardType" nillable="true" type="tns:StraightFlushCardType" />
+  <xs:complexType name="NoTypeInHeadCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NoTypeInHeadCardType" nillable="true" type="tns:NoTypeInHeadCardType" />
   <xs:complexType name="StraightCardType">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:CardType">
@@ -69,22 +85,14 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="GourdCardType" nillable="true" type="tns:GourdCardType" />
-  <xs:complexType name="ThreeSameCardType">
+  <xs:complexType name="FlushCardType">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:CardType">
         <xs:sequence />
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ThreeSameCardType" nillable="true" type="tns:ThreeSameCardType" />
-  <xs:complexType name="PairInHeadCardType">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:CardType">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="PairInHeadCardType" nillable="true" type="tns:PairInHeadCardType" />
+  <xs:element name="FlushCardType" nillable="true" type="tns:FlushCardType" />
   <xs:complexType name="OnePairCardType">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:CardType">
@@ -101,22 +109,6 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="NoTypeCardType" nillable="true" type="tns:NoTypeCardType" />
-  <xs:complexType name="StraightFlushCardType">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:CardType">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="StraightFlushCardType" nillable="true" type="tns:StraightFlushCardType" />
-  <xs:complexType name="NoTypeInHeadCardType">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:CardType">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="NoTypeInHeadCardType" nillable="true" type="tns:NoTypeInHeadCardType" />
   <xs:complexType name="ThreeSameInHeadCardType">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:CardType">
@@ -125,4 +117,12 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="ThreeSameInHeadCardType" nillable="true" type="tns:ThreeSameInHeadCardType" />
+  <xs:complexType name="PairInHeadCardType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CardType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PairInHeadCardType" nillable="true" type="tns:PairInHeadCardType" />
 </xs:schema>

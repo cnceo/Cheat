@@ -7,6 +7,22 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="IsMatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="captureBmpData" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="tmplBmpData" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="similarityThreshold" type="xs:float" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsMatchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsMatchResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="Recognize">
     <xs:complexType>
       <xs:sequence>

@@ -49,6 +49,15 @@ namespace GXService.CardRecognize.Service
         {
         }
 
+        public bool IsMatch(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold)
+        {
+            _tm.SimilarityThreshold = similarityThreshold;
+            var captureBmp = Util.Deserialize(captureBmpData) as Bitmap;
+            var tmplBmp = Util.Deserialize(tmplBmpData) as Bitmap;
+
+            return _tm.ProcessImage(captureBmp, tmplBmp).Any();
+        }
+
         public RecognizeResult Recognize(RecoginizeData data)
         {
             _template = TemplateFactory.Singleton.GetTemplate(data.GameTypeTemplate);
