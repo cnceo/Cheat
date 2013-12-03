@@ -41,7 +41,7 @@ namespace GXService.CardRecognize.Client
             try
             {
 
-                var bmp = Image.FromFile(@"test.bmp") as Bitmap;
+                var bmp = Image.FromFile(@"Cheat.bmp") as Bitmap;
                 if (null == bmp || _proxyRecognize.ClientCredentials == null)
                 {
                     return;
@@ -51,10 +51,24 @@ namespace GXService.CardRecognize.Client
                 _proxyRecognize.ClientCredentials.UserName.Password = "test";
                 _proxyRecognize.Open();
 
+
+                var wnd = "MDIE - [Debug]".FindWindow();
+                var wndBmp = wnd.Capture();
+
+                //wndBmp.Save("ffff.bmp");
+                //var wndBmp = Image.FromFile("qqq.bmp") as Bitmap;
+
+                var wndBmpData = wndBmp.Serialize();
+                var bmpData = bmp.Serialize();
+                _proxyRecognize.Match(wndBmpData, bmpData, (float)0.8)
+                               .Center()
+                               .MouseLClick(wnd);
+
+                return;
                 var result = _proxyRecognize.Recognize(new RecoginizeData
                     {
                         GameTypeTemplate = GameTemplateType.斗地主手牌,
-                        CardsBitmap = Util.Serialize(bmp.Clone(new Rectangle(280, 590, 400, 50), bmp.PixelFormat))
+                        CardsBitmap = bmp.Clone(new Rectangle(280, 590, 400, 50), bmp.PixelFormat).Serialize()
                     });
 
                 var begin = DateTime.Now;

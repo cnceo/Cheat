@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" />
   <xs:import namespace="GXService.CardRecognize.Contract" />
   <xs:element name="Start">
@@ -7,7 +8,7 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="IsMatch">
+  <xs:element name="Match">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="captureBmpData" nillable="true" type="xs:base64Binary" />
@@ -16,53 +17,53 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="IsMatchResponse">
+  <xs:element name="MatchResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="IsMatchResult" type="xs:boolean" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="MatchResult" type="q1:Rectangle" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Recognize">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" minOccurs="0" name="data" nillable="true" type="q1:RecoginizeData" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" minOccurs="0" name="data" nillable="true" type="q2:RecoginizeData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RecognizeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" minOccurs="0" name="RecognizeResult" nillable="true" type="q2:RecognizeResult" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" minOccurs="0" name="RecognizeResult" nillable="true" type="q3:RecognizeResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ParseCardType">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q3:ArrayOfCard" />
+        <xs:element xmlns:q4="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q4:ArrayOfCard" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ParseCardTypeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="GXService.CardRecognize.Contract" minOccurs="0" name="ParseCardTypeResult" nillable="true" type="q4:CardTypeResult" />
+        <xs:element xmlns:q5="GXService.CardRecognize.Contract" minOccurs="0" name="ParseCardTypeResult" nillable="true" type="q5:CardTypeResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ParseCardTypeVsEnemy">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q5:ArrayOfCard" />
-        <xs:element xmlns:q6="GXService.CardRecognize.Contract" minOccurs="0" name="cardsEnemy" nillable="true" type="q6:ArrayOfCard" />
+        <xs:element xmlns:q6="GXService.CardRecognize.Contract" minOccurs="0" name="cards" nillable="true" type="q6:ArrayOfCard" />
+        <xs:element xmlns:q7="GXService.CardRecognize.Contract" minOccurs="0" name="cardsEnemy" nillable="true" type="q7:ArrayOfCard" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ParseCardTypeVsEnemyResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="GXService.CardRecognize.Contract" minOccurs="0" name="ParseCardTypeVsEnemyResult" nillable="true" type="q7:CardTypeResult" />
+        <xs:element xmlns:q8="GXService.CardRecognize.Contract" minOccurs="0" name="ParseCardTypeVsEnemyResult" nillable="true" type="q8:CardTypeResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -546,11 +546,11 @@ namespace GXService.CardRecognize.Client.CardRecognizeServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ICardsRecognizer/Start")]
         System.Threading.Tasks.Task StartAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardsRecognizer/IsMatch", ReplyAction="http://tempuri.org/ICardsRecognizer/IsMatchResponse")]
-        bool IsMatch(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardsRecognizer/Match", ReplyAction="http://tempuri.org/ICardsRecognizer/MatchResponse")]
+        System.Drawing.Rectangle Match(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardsRecognizer/IsMatch", ReplyAction="http://tempuri.org/ICardsRecognizer/IsMatchResponse")]
-        System.Threading.Tasks.Task<bool> IsMatchAsync(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardsRecognizer/Match", ReplyAction="http://tempuri.org/ICardsRecognizer/MatchResponse")]
+        System.Threading.Tasks.Task<System.Drawing.Rectangle> MatchAsync(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICardsRecognizer/Recognize", ReplyAction="http://tempuri.org/ICardsRecognizer/RecognizeResponse")]
         GXService.CardRecognize.Client.CardRecognizeServiceReference.RecognizeResult Recognize(GXService.CardRecognize.Client.CardRecognizeServiceReference.RecoginizeData data);
@@ -612,12 +612,12 @@ namespace GXService.CardRecognize.Client.CardRecognizeServiceReference {
             return base.Channel.StartAsync();
         }
         
-        public bool IsMatch(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold) {
-            return base.Channel.IsMatch(captureBmpData, tmplBmpData, similarityThreshold);
+        public System.Drawing.Rectangle Match(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold) {
+            return base.Channel.Match(captureBmpData, tmplBmpData, similarityThreshold);
         }
         
-        public System.Threading.Tasks.Task<bool> IsMatchAsync(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold) {
-            return base.Channel.IsMatchAsync(captureBmpData, tmplBmpData, similarityThreshold);
+        public System.Threading.Tasks.Task<System.Drawing.Rectangle> MatchAsync(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold) {
+            return base.Channel.MatchAsync(captureBmpData, tmplBmpData, similarityThreshold);
         }
         
         public GXService.CardRecognize.Client.CardRecognizeServiceReference.RecognizeResult Recognize(GXService.CardRecognize.Client.CardRecognizeServiceReference.RecoginizeData data) {

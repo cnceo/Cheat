@@ -117,6 +117,7 @@
     </Compile>
     <None Include="GXService.pfx" />
     <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\System.Drawing.Rectangle.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -140,17 +141,20 @@
     <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Client.CardRecognizeServiceReference.RecognizeResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract1.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\GXService.CardRecognize.Contract21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognizeServiceReference\service.wsdl" />
-    <None Include="Service References\CardRecognizeServiceReference\service.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\service1.wsdl" />
+    <None Include="Service References\CardRecognizeServiceReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CardRecognizeServiceReference\service1.xsd">
+    <None Include="Service References\CardRecognizeServiceReference\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CardRecognizeServiceReference\System.Drawing.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

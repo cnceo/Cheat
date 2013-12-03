@@ -49,13 +49,28 @@ namespace GXService.CardRecognize.Service
         {
         }
 
-        public bool IsMatch(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold)
+        public Rectangle Match(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold)
         {
             _tm.SimilarityThreshold = similarityThreshold;
-            var captureBmp = Util.Deserialize(captureBmpData) as Bitmap;
-            var tmplBmp = Util.Deserialize(tmplBmpData) as Bitmap;
+            var captureBmp = captureBmpData.Deserialize() as Bitmap;
+            var tmplBmp = tmplBmpData.Deserialize() as Bitmap;
+            if (captureBmp == null || tmplBmp == null)
+            {
+                throw new Exception("图片反序列化失败");
+            }
 
-            return _tm.ProcessImage(captureBmp, tmplBmp).Any();
+            if (captureBmp.PixelFormat != tmplBmp.PixelFormat)
+            {
+                captureBmp = captureBmp.Clone(new Rectangle(0, 0, captureBmp.Width, captureBmp.Height),
+                                              tmplBmp.PixelFormat);
+            }
+
+            var matches = _tm.ProcessImage(captureBmp, tmplBmp);
+            if (matches == null || !matches.Any())
+            {
+                throw new Exception("无匹配图案");
+            }
+            return matches.OrderBy(m => m.Similarity).Last().Rectangle;
         }
 
         public RecognizeResult Recognize(RecoginizeData data)
@@ -70,7 +85,7 @@ namespace GXService.CardRecognize.Service
             {
                 Result = new List<Card>()
             };
-            var cardsBitmap = Util.Deserialize(data.CardsBitmap) as Bitmap;
+            var cardsBitmap = data.CardsBitmap.Deserialize() as Bitmap;
 
             if (cardsBitmap == null)
             {

@@ -12,7 +12,7 @@ namespace GXService.CardRecognize.Contract
         void Start();
 
         [OperationContract]
-        bool IsMatch(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold);
+        Rectangle Match(byte[] captureBmpData, byte[] tmplBmpData, float similarityThreshold);
 
         [OperationContract]
         RecognizeResult Recognize(RecoginizeData data);

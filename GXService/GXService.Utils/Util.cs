@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GXService.Utils
 {
-    public class Util
+    public static class SerializeExtension
     {
-        public static List<T> DeserializeList<T>(byte[] objsData)
+        public static List<T> DeserializeList<T>(this byte[] objsData)
         {
             var bf = new BinaryFormatter();
             var ms = new MemoryStream();
@@ -25,7 +26,7 @@ namespace GXService.Utils
             }
         }
 
-        public static byte[] Serialize<T>(T obj)
+        public static byte[] Serialize<T>(this T obj)
         {
             var bf = new BinaryFormatter();
             var ms = new MemoryStream();
@@ -34,7 +35,7 @@ namespace GXService.Utils
             return ms.ToArray();
         }
 
-        public static object Deserialize(byte[] objsData)
+        public static object Deserialize(this byte[] objsData)
         {
             var bf = new BinaryFormatter();
             var ms = new MemoryStream();
@@ -118,6 +119,24 @@ namespace GXService.Utils
         {
             return (from e in a.Permutation(choose)
                     select e.Aggregate(aggregate));
+        }
+    }
+
+    public static class RectangleExtension
+    {
+        public static Point Center(this Rectangle rect)
+        {
+            return new Point((rect.Left + rect.Right)/2, (rect.Top + rect.Bottom)/2);
+        }
+
+        public static Rectangle ToRectangle(this User32Api.RectApi rect)
+        {
+            return new Rectangle(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
+        }
+
+        public static User32Api.RectApi ToRectApi(this Rectangle rect)
+        {
+            return new User32Api.RectApi {left = rect.Left, right = rect.Right, top = rect.Top, bottom = rect.Bottom};
         }
     }
 }

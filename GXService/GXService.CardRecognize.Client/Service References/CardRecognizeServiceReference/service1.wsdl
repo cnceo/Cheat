@@ -166,7 +166,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_ICardsRecognizer_IsMatch_Input_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_ICardsRecognizer_Match_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -194,7 +194,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_ICardsRecognizer_IsMatch_output_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_ICardsRecognizer_Match_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -422,6 +422,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/GXService.CardRecognize.Contract" />
       <xsd:import namespace="GXService.CardRecognize.Contract" />
     </xsd:schema>
@@ -429,11 +430,11 @@
   <wsdl:message name="ICardsRecognizer_Start_InputMessage">
     <wsdl:part name="parameters" element="tns:Start" />
   </wsdl:message>
-  <wsdl:message name="ICardsRecognizer_IsMatch_InputMessage">
-    <wsdl:part name="parameters" element="tns:IsMatch" />
+  <wsdl:message name="ICardsRecognizer_Match_InputMessage">
+    <wsdl:part name="parameters" element="tns:Match" />
   </wsdl:message>
-  <wsdl:message name="ICardsRecognizer_IsMatch_OutputMessage">
-    <wsdl:part name="parameters" element="tns:IsMatchResponse" />
+  <wsdl:message name="ICardsRecognizer_Match_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MatchResponse" />
   </wsdl:message>
   <wsdl:message name="ICardsRecognizer_Recognize_InputMessage">
     <wsdl:part name="parameters" element="tns:Recognize" />
@@ -460,9 +461,9 @@
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Start">
       <wsdl:input wsaw:Action="http://tempuri.org/ICardsRecognizer/Start" message="tns:ICardsRecognizer_Start_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="IsMatch">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICardsRecognizer/IsMatch" message="tns:ICardsRecognizer_IsMatch_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICardsRecognizer/IsMatchResponse" message="tns:ICardsRecognizer_IsMatch_OutputMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Match">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICardsRecognizer/Match" message="tns:ICardsRecognizer_Match_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICardsRecognizer/MatchResponse" message="tns:ICardsRecognizer_Match_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Recognize">
       <wsdl:input wsaw:Action="http://tempuri.org/ICardsRecognizer/Recognize" message="tns:ICardsRecognizer_Recognize_InputMessage" />
@@ -492,15 +493,15 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="IsMatch">
-      <soap12:operation soapAction="http://tempuri.org/ICardsRecognizer/IsMatch" style="document" />
+    <wsdl:operation name="Match">
+      <soap12:operation soapAction="http://tempuri.org/ICardsRecognizer/Match" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#NetTcpBinding_ICardsRecognizer_IsMatch_Input_policy">
+        <wsp:PolicyReference URI="#NetTcpBinding_ICardsRecognizer_Match_Input_policy">
         </wsp:PolicyReference>
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#NetTcpBinding_ICardsRecognizer_IsMatch_output_policy">
+        <wsp:PolicyReference URI="#NetTcpBinding_ICardsRecognizer_Match_output_policy">
         </wsp:PolicyReference>
         <soap12:body use="literal" />
       </wsdl:output>
