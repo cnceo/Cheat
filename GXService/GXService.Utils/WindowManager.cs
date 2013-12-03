@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace GXService.Utils
 {
-    public static class WindowCapture
+    public static class WindowManager
     {
         public static Bitmap Capture(this IntPtr hWnd, Rectangle rect)
         {
@@ -32,6 +32,16 @@ namespace GXService.Utils
             GC.Collect();
 
             return bmp;
+        }
+
+        public static IntPtr FindWindow(this string titleWnd)
+        {
+            return User32Api.FindWindow(null, titleWnd);
+        }
+
+        public static IntPtr FindWindow(this string titleWnd, string classWnd)
+        {
+            return User32Api.FindWindow(classWnd, titleWnd);
         }
     }
 }
