@@ -24,8 +24,8 @@ namespace GXService.Utils
         {
             var myMinput = new User32Api.MouseInputApi
                 {
-                    dx = pt.X*(65355/Screen.PrimaryScreen.WorkingArea.Width),
-                    dy = pt.Y*(65355/Screen.PrimaryScreen.WorkingArea.Height),
+                    dx = pt.X * (65355 / Screen.PrimaryScreen.Bounds.Width),
+                    dy = pt.Y * (65355 / Screen.PrimaryScreen.Bounds.Height),
                     Mousedata = 0,
                     dwFlag = User32Api.MouseEventAbsolute |
                              User32Api.MouseEventMove |

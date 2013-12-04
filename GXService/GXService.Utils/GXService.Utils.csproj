@@ -47,6 +47,14 @@
     <Compile Include="User32Api.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="WindowManager.cs" />
+    <Compile Include="WinIO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\WinIo.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\WinIo.sys" />
+    <None Include="Lib\WINIO.VXD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

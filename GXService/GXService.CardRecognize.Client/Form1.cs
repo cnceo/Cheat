@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,14 +24,26 @@ namespace GXService.CardRecognize.Client
         public Form1()
         {
             InitializeComponent();
+            
+            _proxyBroadcast = new BroadcastClient(new InstanceContext(_broadcastCallback));
 
+            _proxyBroadcast.ClientCredentials.UserName.UserName = "show";
+            _proxyBroadcast.ClientCredentials.UserName.Password = "test";
 
+            _proxyRecognize.ClientCredentials.UserName.UserName = "show";
+            _proxyRecognize.ClientCredentials.UserName.Password = "test";
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            e.Graphics.DrawString(_cardsDisplay, new Font("Tahoma", 8, FontStyle.Bold), Brushes.Red, 0, 0);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             try
             {
                 //_broadcastCallback.BroadcastData += args => rtbAllMessages.Text += args.Message + @"\r\n";
-                _proxyBroadcast = new BroadcastClient(new InstanceContext(_broadcastCallback));
-                _proxyBroadcast.ClientCredentials.UserName.UserName = "show";
-                _proxyBroadcast.ClientCredentials.UserName.Password = "test";
                 _proxyBroadcast.Connect();
             }
             catch (Exception ex)
@@ -41,28 +54,48 @@ namespace GXService.CardRecognize.Client
             try
             {
 
-                var bmp = Image.FromFile(@"Cheat.bmp") as Bitmap;
+                var bmp = Image.FromFile(@"login.bmp") as Bitmap;
                 if (null == bmp || _proxyRecognize.ClientCredentials == null)
                 {
                     return;
                 }
 
-                _proxyRecognize.ClientCredentials.UserName.UserName = "show";
-                _proxyRecognize.ClientCredentials.UserName.Password = "test";
                 _proxyRecognize.Open();
 
+                var process = Process.Start(@"D:\Program Files\拇指通科技\赖子山庄\赖子山庄.exe");
+                process.WaitForInputIdle();
+                Thread.Sleep(5000);
+                //var wndBmp = process.MainWindowHandle.Capture();
 
-                var wnd = "MDIE - [Debug]".FindWindow();
-                var wndBmp = wnd.Capture();
+                var wnd = "赖子山庄登录".FindWindow();
+                wnd.SetForeground();
+                //wnd = User32Api.FindWindow("Edit", null);
+                var wndBmp = wnd.GetWindowRect().Capture();
 
-                //wndBmp.Save("ffff.bmp");
+                wndBmp.Save("ffff.bmp");
+                //wndBmp.Clone(new Rectangle{X=8,Y=173,Width=59,Height=24}, wndBmp.PixelFormat).Save("eeee.bmp");
                 //var wndBmp = Image.FromFile("qqq.bmp") as Bitmap;
 
-                var wndBmpData = wndBmp.Serialize();
-                var bmpData = bmp.Serialize();
-                _proxyRecognize.Match(wndBmpData, bmpData, (float)0.8)
-                               .Center()
-                               .MouseLClick(wnd);
+                var beginTime = DateTime.Now.Ticks;
+                var rect = _proxyRecognize.Match(wndBmp.Serialize(), bmp.Serialize(), (float) 0.84);
+                var endTime = DateTime.Now.Ticks;
+                var t = new TimeSpan(endTime - beginTime);
+
+                using (var fs = new FileStream("time.txt", FileMode.Create))
+                {
+                    using (var sw = new StreamWriter(fs))
+                    {
+                        sw.WriteLine(string.Format("{0}秒", t.Seconds));
+                    }
+                }
+                wnd.SetForeground();
+                rect.Center().MouseLClick(wnd);
+                rect.Center().MouseLClick(wnd);
+                //(rect.Center() + new Size(rect.Width, 0)).MouseLClick(wnd);
+                //WinIoLab.Singleton.KeyPress(new List<Keys> {Keys.T, Keys.E, Keys.S, Keys.T, Keys.Space});
+
+                wndBmp.Clone(rect, wndBmp.PixelFormat).Save("rect.bmp");
+                Thread.Sleep(5000);
 
                 return;
                 var result = _proxyRecognize.Recognize(new RecoginizeData
@@ -116,11 +149,6 @@ namespace GXService.CardRecognize.Client
             {
                 MessageBox.Show(ex.InnerException == null ? ex.ToString() : ex.InnerException.ToString());
             }
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            e.Graphics.DrawString(_cardsDisplay, new Font("Tahoma", 8, FontStyle.Bold), Brushes.Red, 0, 0);
         }
     }
 

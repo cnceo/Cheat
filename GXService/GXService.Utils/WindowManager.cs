@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace GXService.Utils
 {
@@ -20,7 +21,12 @@ namespace GXService.Utils
 
         public static Bitmap Capture(this Rectangle rect)
         {
-            return rect.Capture(User32Api.GetDesktopWindow());
+            //创建图象，保存将来截取的图象
+            var image = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            var imgGraphics = Graphics.FromImage(image);
+            //设置截屏区域
+            imgGraphics.CopyFromScreen(rect.Left, rect.Top, 0, 0, new Size(rect.Width, rect.Height));
+            return image;
         }
 
         public static Bitmap Capture(this IntPtr hWnd, Rectangle rect)
@@ -67,6 +73,11 @@ namespace GXService.Utils
             var rect = new User32Api.RectApi();
             User32Api.GetWindowRect(hWnd, ref rect);
             return rect.ToRectangle();
+        }
+
+        public static bool SetForeground(this IntPtr hWnd)
+        {
+            return User32Api.SetForegroundWindow(hWnd);
         }
     }
 }
