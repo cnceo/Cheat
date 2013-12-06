@@ -62,12 +62,23 @@ namespace GXService.CardRecognize.Client
 
                 _proxyRecognize.Open();
 
-                var process = Process.Start(@"D:\Program Files\拇指通科技\赖子山庄\赖子山庄.exe");
-                process.WaitForInputIdle();
-                Thread.Sleep(5000);
+                //var process = Process.Start(@"D:\Program Files\拇指通科技\赖子山庄\赖子山庄.exe");
+                //process.WaitForInputIdle();
+                //Thread.Sleep(5000);
                 //var wndBmp = process.MainWindowHandle.Capture();
 
-                var wnd = "赖子山庄登录".FindWindow();
+                var wnd = "赖子山庄".FindWindow();
+                if (wnd == IntPtr.Zero)
+                {
+                    MessageBox.Show("找不到赖子山庄窗口");
+                    return;
+                }
+                var childWnds = wnd.GetChildWindows();
+                var index = 0;
+                childWnds.ForEach(wndChild => wndChild.GetWindowRect().Capture().Save(string.Format("{0}.bmp", index++)));
+
+                return;
+
                 wnd.SetForeground();
                 //wnd = User32Api.FindWindow("Edit", null);
                 var wndBmp = wnd.GetWindowRect().Capture();
