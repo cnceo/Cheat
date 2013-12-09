@@ -155,7 +155,7 @@ namespace GXService.Utils
         }
 
         #region 树形控件
-        public static string GetItemText(IntPtr treeViewHwnd, IntPtr itemHwnd)
+        public static string GetItemText(this IntPtr treeViewHwnd, IntPtr itemHwnd)
         {
             string output;
 
@@ -215,6 +215,28 @@ namespace GXService.Utils
 
             return output;
         }
+
+        //获取第一个子节点
+        public static IntPtr GetChildItem(this IntPtr treeViewHwnd, IntPtr prevItemHwnd)
+        {
+            return User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETNEXTITEM,
+                                         WindowsMessageApi.TVGN_CHILD, prevItemHwnd);
+        }
+
+        //获取下个子节点
+        public static IntPtr GetNextItem(this IntPtr treeViewHwnd, IntPtr prevItemHwnd)
+        {
+            return User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETNEXTITEM,
+                                         WindowsMessageApi.TVGN_NEXT, prevItemHwnd);
+        }
+
+        //获取根节点
+        public static IntPtr GetRootItem(this IntPtr treeViewHwnd)
+        {
+            return User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETNEXTITEM,
+                                         WindowsMessageApi.TVGN_ROOT, IntPtr.Zero);
+        }
+
         #endregion
     }
 }
