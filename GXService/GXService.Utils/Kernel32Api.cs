@@ -21,7 +21,10 @@ namespace GXService.Utils
         /// <param name="size">长度</param>
         /// <param name="read">读取长度</param>
         [DllImport("Kernel32.dll")]
-        public static extern bool ReadProcessMemory(IntPtr handle, IntPtr address, out byte[] data, int size, out int read);
+        public static extern bool ReadProcessMemory(IntPtr handle, IntPtr address, IntPtr data, int size, out int read);
+
+        [DllImport("Kernel32.dll")]
+        public static extern bool ReadProcessMemory(IntPtr handle, IntPtr address, StringBuilder data, int size, out int read);
 
         /// <summary>
         /// 此函数能写入某一进程的内存区域

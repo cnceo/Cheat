@@ -137,6 +137,9 @@ namespace GXService.Utils
         [DllImport("user32.dll")]
         public static extern int GetDlgCtrlID(IntPtr hWnd);
 
+        [DllImport("user32.dll")]
+        public static extern bool IsWindowVisible(IntPtr hWnd);
+
         #region 窗口枚举
         //窗口枚举回调函数定义
         public delegate bool CallBack(IntPtr hwnd, ref EnumCallBackModel lParam);

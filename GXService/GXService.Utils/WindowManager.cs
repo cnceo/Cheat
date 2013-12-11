@@ -155,9 +155,10 @@ namespace GXService.Utils
         }
 
         #region 树形控件
+
         public static string GetItemText(this IntPtr treeViewHwnd, IntPtr itemHwnd)
         {
-            string output;
+            var result = new StringBuilder(1024);
 
             uint vProcessId;
             User32Api.GetWindowThreadProcessId(treeViewHwnd, out vProcessId);
@@ -168,52 +169,60 @@ namespace GXService.Utils
                 false,
                 vProcessId
                 );
-            var vPointer = Kernel32Api.VirtualAllocEx(vProcess,
-                                                      IntPtr.Zero,
-                                                      4096,
-                                                      WindowsMessageApi.MEM_RESERVE | WindowsMessageApi.MEM_COMMIT,
-                                                      WindowsMessageApi.PAGE_READWRITE);
+
+            var pStrBufferMemory = Kernel32Api.VirtualAllocEx(vProcess,
+                                                              IntPtr.Zero,
+                                                              1024,
+                                                              WindowsMessageApi.MEM_COMMIT,
+                                                              WindowsMessageApi.PAGE_READWRITE);
+            var remoteBuffer = Kernel32Api.VirtualAllocEx(vProcess,
+                                                          IntPtr.Zero,
+                                                          (uint) Marshal.SizeOf(typeof (User32Api.TVITEM)),
+                                                          WindowsMessageApi.MEM_COMMIT,
+                                                          WindowsMessageApi.PAGE_EXECUTE_READWRITE);
 
             try
             {
-                var vBuffer = new byte[1024];
-                var vItem = new User32Api.TVITEM[1];
-                vItem[0] = new User32Api.TVITEM
+                var tvItem = new User32Api.TVITEM
                     {
                         mask = WindowsMessageApi.TVIF_TEXT,
                         hItem = itemHwnd,
-                        pszText = (IntPtr) ((int) vPointer + Marshal.SizeOf(typeof (User32Api.TVITEM))),
-                        cchTextMax = vBuffer.Length
+                        pszText = pStrBufferMemory,
+                        cchTextMax = 1024
                     };
-                int vNumberOfBytesRead;
 
+                var localBuffer = Marshal.AllocHGlobal(Marshal.SizeOf(tvItem));
+                Marshal.StructureToPtr(tvItem, localBuffer, false);
+
+                int vNumberOfBytesWrite;
                 Kernel32Api.WriteProcessMemory(
                     vProcess,
-                    vPointer,
-                    Marshal.UnsafeAddrOfPinnedArrayElement(vItem, 0),
-                    Marshal.SizeOf(typeof(User32Api.TVITEM)),
-                    out vNumberOfBytesRead
-                    );
+                    remoteBuffer,
+                    localBuffer,
+                    Marshal.SizeOf(typeof (User32Api.TVITEM)),
+                    out vNumberOfBytesWrite);
 
-                User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETITEM, 0, vPointer);
+                User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETITEM, 0, remoteBuffer);
 
+                int vNumberOfBytesRead;
                 Kernel32Api.ReadProcessMemory(
                     vProcess,
-                    new IntPtr(vPointer.ToInt32() + Marshal.SizeOf(typeof(User32Api.TVITEM))),
-                    out vBuffer,
-                    vBuffer.Length,
+                    pStrBufferMemory,
+                    result,
+                    1024,
                     out vNumberOfBytesRead
                     );
 
-                output = Marshal.PtrToStringAuto(Marshal.UnsafeAddrOfPinnedArrayElement(vBuffer, 0));
+
             }
             finally
             {
-                Kernel32Api.VirtualFreeEx(vProcess, vPointer, 0, WindowsMessageApi.MEM_RELEASE);
+                Kernel32Api.VirtualFreeEx(vProcess, pStrBufferMemory, 0, WindowsMessageApi.MEM_RELEASE);
+                Kernel32Api.VirtualFreeEx(vProcess, remoteBuffer, 0, WindowsMessageApi.MEM_RELEASE);
                 Kernel32Api.CloseHandle(vProcess);
             }
 
-            return output;
+            return result.ToString();
         }
 
         //获取第一个子节点

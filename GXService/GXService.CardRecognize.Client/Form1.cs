@@ -41,6 +41,18 @@ namespace GXService.CardRecognize.Client
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            var treeView = @"MDIE - [WinIO_KeyBoard]".FindWindow()
+                                                     .GetChildWindows()
+                                                     .First(w =>
+                                                            User32Api.IsWindowVisible(w) &&
+                                                            w.GetClassName() == "SysTreeView32");
+            var itemText = treeView.GetItemText(treeView.GetRootItem());
+
+            return;
+
+
+
             try
             {
                 //_broadcastCallback.BroadcastData += args => rtbAllMessages.Text += args.Message + @"\r\n";
