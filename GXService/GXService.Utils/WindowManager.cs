@@ -225,6 +225,40 @@ namespace GXService.Utils
             return result.ToString();
         }
 
+        public static void ItemClick(this IntPtr treeViewHwnd, IntPtr itemHwnd)
+        {
+            User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_SELECTITEM,
+                                  WindowsMessageApi.TVGN_CARET, itemHwnd);
+        }
+
+        public static void SearchChildItem(this IntPtr treeViewHwnd, IntPtr itemHwnd, string nodeName, ref List<IntPtr> searchedItem)
+        {
+            if (treeViewHwnd.GetItemText(itemHwnd) == nodeName)
+            {
+                searchedItem.Add(itemHwnd); 
+            }
+
+            var childItem = treeViewHwnd.GetChildItem(itemHwnd);
+            if (childItem != IntPtr.Zero)
+            {
+                if (treeViewHwnd.GetItemText(childItem) == nodeName)
+                {
+                    searchedItem.Add(childItem);
+                }
+                treeViewHwnd.SearchChildItem(childItem, nodeName, ref searchedItem);
+            }
+
+            var nextItem = treeViewHwnd.GetNextItem(itemHwnd);
+            if (nextItem != IntPtr.Zero)
+            {
+                if (treeViewHwnd.GetItemText(nextItem) == nodeName)
+                {
+                    searchedItem.Add(nextItem);
+                }
+                treeViewHwnd.SearchChildItem(nextItem, nodeName, ref searchedItem);
+            }
+        }
+
         //获取第一个子节点
         public static IntPtr GetChildItem(this IntPtr treeViewHwnd, IntPtr prevItemHwnd)
         {

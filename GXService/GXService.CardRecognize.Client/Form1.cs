@@ -42,12 +42,16 @@ namespace GXService.CardRecognize.Client
         private void button1_Click(object sender, EventArgs e)
         {
 
-            var treeView = @"MDIE - [WinIO_KeyBoard]".FindWindow()
+            var treeView = @"K赖子山庄1".FindWindow()
                                                      .GetChildWindows()
                                                      .First(w =>
                                                             User32Api.IsWindowVisible(w) &&
-                                                            w.GetClassName() == "SysTreeView32");
+                                                            w.GetClassName() == "TreeView20WndClass");
             var itemText = treeView.GetItemText(treeView.GetRootItem());
+
+            var items = new List<IntPtr>();
+            treeView.SearchChildItem(treeView.GetRootItem(), "湖北省", ref items);
+            treeView.ItemClick(items[0]);
 
             return;
 
