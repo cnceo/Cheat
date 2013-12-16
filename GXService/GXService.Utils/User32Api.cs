@@ -166,7 +166,7 @@ namespace GXService.Utils
         public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
 
         [DllImport("User32.dll", EntryPoint = "SendMessage", CharSet = CharSet.Auto)]
-        public static extern IntPtr SendMessage(IntPtr hWnd, uint msg, int wParam, IntPtr lParam);
+        public static extern IntPtr SendMessage(IntPtr hWnd, uint msg, int wParam, int lParam);
 
         [DllImport("User32.dll", EntryPoint = "PostMessage")]
         public static extern bool PostMessage(IntPtr hWnd, uint msg, int wParam, int lParam);

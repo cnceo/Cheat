@@ -250,18 +250,22 @@
         public const int MK_XBUTTON2 = 0x0040;
 
         #region 树形控件
-        public const int TVGN_CARET = 0x00000009;
-        public const int TVM_SELECTITEM = 0x0000110b;
-        public const int TVGN_ROOT = 0x00000000;
-        public const int TVM_GETNEXTITEM = 0x0000110a;
         public const int TVIF_TEXT = 0x0001;
+
+        public const int TVGN_CARET = 0x00000009;
+        public const int TVGN_ROOT = 0x00000000;
         public const int TVGN_NEXT = 0x00000001;
-        public const int TVM_GETITEM = 0x0000110c;
         public const int TVGN_CHILD = 0x00000004;
-        public const int GMEM_FIXED = 0x0000;
+
+        public const int TVM_SELECTITEM = 0x0000110b;
+        public const int TVM_GETNEXTITEM = 0x0000110a;
+        public const int TVM_GETITEM = 0x0000110c;
+        public const int TVM_GETITEMRECT = 0x00001104;
+        public const int TVM_ENSUREVISIBLE = 0x00001120;
         #endregion
 
         #region 内存管理
+        public const uint GMEM_FIXED = 0x0000;
         public const uint PAGE_GUARD = 0x100;
         public const uint PAGE_NOCACHE = 0x200;
         public const uint PAGE_WRITECOMBINE = 0x400;
@@ -307,6 +311,7 @@
         public const uint PROCESS_QUERY_INFORMATION = 0x0400;
         public const uint PROCESS_SUSPEND_RESUME = 0x0800;
         public const uint PROCESS_QUERY_LIMITED_INFORMATION = 0x1000;
+        public const uint PROCESS_ALL_ACCESS = 0x001F0FFF;
 
         public const uint PAGE_NOACCESS = 0x01;
         public const uint PAGE_READONLY = 0x02;

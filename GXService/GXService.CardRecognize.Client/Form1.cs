@@ -24,7 +24,7 @@ namespace GXService.CardRecognize.Client
         public Form1()
         {
             InitializeComponent();
-            
+
             _proxyBroadcast = new BroadcastClient(new InstanceContext(_broadcastCallback));
 
             _proxyBroadcast.ClientCredentials.UserName.UserName = "show";
@@ -41,17 +41,16 @@ namespace GXService.CardRecognize.Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            var treeView = @"K赖子山庄1".FindWindow()
-                                                     .GetChildWindows()
-                                                     .First(w =>
-                                                            User32Api.IsWindowVisible(w) &&
-                                                            w.GetClassName() == "TreeView20WndClass");
+            var childWindows = @"MDIE - [桌面]".FindWindow() //K赖子山庄1
+                                             .GetChildWindows();
+            var treeView = childWindows.First(w =>
+                                              User32Api.IsWindowVisible(w) &&
+                                              w.GetClassName() == "SysTreeView32");//TreeView20WndClass
             var itemText = treeView.GetItemText(treeView.GetRootItem());
 
             var items = new List<IntPtr>();
-            treeView.SearchChildItem(treeView.GetRootItem(), "湖北省", ref items);
-            treeView.ItemClick(items[0]);
+            treeView.SearchChildItem(treeView.GetRootItem(), "计算机", ref items);
+            treeView.ItemClick(items[0], new Size());
 
             return;
 

@@ -202,7 +202,7 @@ namespace GXService.Utils
                     Marshal.SizeOf(typeof (User32Api.TVITEM)),
                     out vNumberOfBytesWrite);
 
-                User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETITEM, 0, remoteBuffer);
+                User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETITEM, 0, remoteBuffer.ToInt32());
 
                 int vNumberOfBytesRead;
                 Kernel32Api.ReadProcessMemory(
@@ -227,8 +227,56 @@ namespace GXService.Utils
 
         public static void ItemClick(this IntPtr treeViewHwnd, IntPtr itemHwnd)
         {
-            User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_SELECTITEM,
-                                  WindowsMessageApi.TVGN_CARET, itemHwnd);
+            treeViewHwnd.ItemClick(itemHwnd, new Size(0, 0));
+        }
+
+        public static void ItemClick(this IntPtr treeViewHwnd, IntPtr itemHwnd, Size offSet)
+        {
+            uint vProcessId;
+            User32Api.GetWindowThreadProcessId(treeViewHwnd, out vProcessId);
+            var vProcess = Kernel32Api.OpenProcess(
+                WindowsMessageApi.PROCESS_ALL_ACCESS,
+                false,
+                vProcessId
+                );
+
+            var remoteBuffer = Kernel32Api.VirtualAllocEx(vProcess,
+                                                          IntPtr.Zero,
+                                                          (uint)Marshal.SizeOf(typeof(User32Api.RectApi)),
+                                                          WindowsMessageApi.MEM_COMMIT,
+                                                          WindowsMessageApi.PAGE_EXECUTE_READWRITE);
+
+            try
+            {
+                var rc = new User32Api.RectApi { left = itemHwnd.ToInt32() };
+                var localBuffer = Marshal.AllocHGlobal(Marshal.SizeOf(rc));
+                Marshal.StructureToPtr(rc, localBuffer, false);
+
+                int vNumberOfBytes;
+                Kernel32Api.WriteProcessMemory(vProcess, remoteBuffer, localBuffer,
+                                               Marshal.SizeOf(typeof(User32Api.RectApi)), out vNumberOfBytes);
+                User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_SELECTITEM, WindowsMessageApi.TVGN_CARET,
+                                      itemHwnd.ToInt32());
+                User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_ENSUREVISIBLE, 0, itemHwnd.ToInt32());
+                User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETITEMRECT, 1, remoteBuffer.ToInt32());
+                Kernel32Api.ReadProcessMemory(vProcess, remoteBuffer, localBuffer,
+                                               Marshal.SizeOf(typeof(User32Api.RectApi)), out vNumberOfBytes);
+                rc = (User32Api.RectApi)Marshal.PtrToStructure(localBuffer, typeof(User32Api.RectApi));
+                var pt = rc.ToRectangle().Center() + offSet;
+
+                User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.WM_LBUTTONDBLCLK, 0, (int)MAKELPARAM((uint)pt.X, (uint)pt.Y));
+            }
+            finally
+            {
+                Kernel32Api.VirtualFreeEx(vProcess, remoteBuffer, (uint) Marshal.SizeOf(typeof (User32Api.RectApi)),
+                                          WindowsMessageApi.MEM_FREE);
+                Kernel32Api.CloseHandle(vProcess);
+            }
+        }
+
+        public static uint MAKELPARAM(uint wLow, uint wHigh)
+        {
+            return ((0xffff & wHigh) << 16) | (wLow & 0xffff);
         }
 
         public static void SearchChildItem(this IntPtr treeViewHwnd, IntPtr itemHwnd, string nodeName, ref List<IntPtr> searchedItem)
@@ -241,20 +289,12 @@ namespace GXService.Utils
             var childItem = treeViewHwnd.GetChildItem(itemHwnd);
             if (childItem != IntPtr.Zero)
             {
-                if (treeViewHwnd.GetItemText(childItem) == nodeName)
-                {
-                    searchedItem.Add(childItem);
-                }
                 treeViewHwnd.SearchChildItem(childItem, nodeName, ref searchedItem);
             }
 
             var nextItem = treeViewHwnd.GetNextItem(itemHwnd);
             if (nextItem != IntPtr.Zero)
             {
-                if (treeViewHwnd.GetItemText(nextItem) == nodeName)
-                {
-                    searchedItem.Add(nextItem);
-                }
                 treeViewHwnd.SearchChildItem(nextItem, nodeName, ref searchedItem);
             }
         }
@@ -263,21 +303,21 @@ namespace GXService.Utils
         public static IntPtr GetChildItem(this IntPtr treeViewHwnd, IntPtr prevItemHwnd)
         {
             return User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETNEXTITEM,
-                                         WindowsMessageApi.TVGN_CHILD, prevItemHwnd);
+                                         WindowsMessageApi.TVGN_CHILD, prevItemHwnd.ToInt32());
         }
 
         //获取下个子节点
         public static IntPtr GetNextItem(this IntPtr treeViewHwnd, IntPtr prevItemHwnd)
         {
             return User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETNEXTITEM,
-                                         WindowsMessageApi.TVGN_NEXT, prevItemHwnd);
+                                         WindowsMessageApi.TVGN_NEXT, prevItemHwnd.ToInt32());
         }
 
         //获取根节点
         public static IntPtr GetRootItem(this IntPtr treeViewHwnd)
         {
             return User32Api.SendMessage(treeViewHwnd, WindowsMessageApi.TVM_GETNEXTITEM,
-                                         WindowsMessageApi.TVGN_ROOT, IntPtr.Zero);
+                                         WindowsMessageApi.TVGN_ROOT, 0);
         }
 
         #endregion
