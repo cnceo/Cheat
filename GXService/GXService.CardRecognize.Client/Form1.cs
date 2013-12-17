@@ -41,16 +41,68 @@ namespace GXService.CardRecognize.Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var childWindows = @"MDIE - [桌面]".FindWindow() //K赖子山庄1
-                                             .GetChildWindows();
-            var treeView = childWindows.First(w =>
-                                              User32Api.IsWindowVisible(w) &&
-                                              w.GetClassName() == "SysTreeView32");//TreeView20WndClass
-            var itemText = treeView.GetItemText(treeView.GetRootItem());
+            _proxyRecognize.Open();
 
-            var items = new List<IntPtr>();
-            treeView.SearchChildItem(treeView.GetRootItem(), "计算机", ref items);
-            treeView.ItemClick(items[0], new Size());
+            //#region 打开应用程序
+            //var process = Process.Start(@"D:\Program Files\拇指通科技\赖子山庄\赖子山庄.exe");
+            //process.WaitForInputIdle();
+            //Thread.Sleep(10000);
+            //#endregion
+
+
+            //#region 登录
+
+            //var mainWindows = @"赖子山庄登录".FindWindow(); //K赖子山庄1
+            //var childWindows = mainWindows.GetChildWindows();
+            //var userWnd = childWindows.First(w =>
+            //                                  User32Api.IsWindowVisible(w) &&
+            //                                  w.GetClassName() == "ThunderRT6ComboBox");//TreeView20WndClass,SysTreeView32,ThunderRT6ComboBox
+
+            //userWnd.SetWindowText("tf_846");
+            //var passwordWnd = childWindows.First(w =>
+            //                                  User32Api.IsWindowVisible(w) &&
+            //                                  w.GetClassName() == "ThunderRT6TextBox");//TreeView20WndClass,SysTreeView32,ThunderRT6ComboBox
+
+            //passwordWnd.SetWindowText("q123456789");
+
+
+            //var loginBmp = Image.FromFile(@"login.bmp");
+
+
+            //mainWindows.SetForeground();
+            //_proxyRecognize.Match(mainWindows.Capture().Serialize(), loginBmp.Serialize(), (float)0.8).Center().MouseLClick(mainWindows);
+
+
+            //#endregion
+
+
+            #region 进房间
+            //Thread.Sleep(10000);
+            var pkpBmp = Image.FromFile(@"扑克室.bmp");
+            var mainRoomWindows = @"赖子山庄".FindWindow();
+            mainRoomWindows.SetForeground();
+            var childRoomWindows = mainRoomWindows.GetChildWindows();
+            var rectClick = new Rectangle();
+            foreach (var w in childRoomWindows)
+            {
+                var bmpTmp = w.GetWindowRect().Capture();
+                rectClick = _proxyRecognize.Match(bmpTmp.Serialize(), pkpBmp.Serialize(), (float)0.8);
+                if (!rectClick.IsEmpty)
+                {
+                    break;
+                }
+            }
+
+            (rectClick.Center() + new Size(0, 20)).MouseLClick(mainRoomWindows);
+
+            #endregion
+
+
+            //var itemText = treeView.GetItemText(treeView.GetRootItem());
+
+            //var items = new List<IntPtr>();
+            //treeView.SearchChildItem(treeView.GetRootItem(), "计算机", ref items);
+            //treeView.ItemClick(items[0], new Size());
 
             return;
 
@@ -74,8 +126,6 @@ namespace GXService.CardRecognize.Client
                 {
                     return;
                 }
-
-                _proxyRecognize.Open();
 
                 //var process = Process.Start(@"D:\Program Files\拇指通科技\赖子山庄\赖子山庄.exe");
                 //process.WaitForInputIdle();

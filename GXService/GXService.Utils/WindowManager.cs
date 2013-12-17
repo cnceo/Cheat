@@ -149,6 +149,21 @@ namespace GXService.Utils
             return sb.ToString();
         }
 
+        public static IntPtr SetWindowText(this IntPtr hWnd, string text)
+        {
+            User32Api.SendMessage(hWnd, WindowsMessageApi.WM_SETTEXT, 0, text);
+
+            return hWnd;
+        }
+
+        public static string QueryWindowText(this IntPtr hWnd)
+        {
+            var sb = new StringBuilder(hWnd.GetWindowTextLength());
+            User32Api.SendMessage(hWnd, WindowsMessageApi.WM_GETTEXT, sb.Capacity, sb);
+
+            return sb.ToString();
+        }
+
         public static int GetWindowTextLength(this IntPtr hWnd)
         {
             return User32Api.GetWindowTextLength(hWnd);
